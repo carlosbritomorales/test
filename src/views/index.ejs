@@ -1,15 +1,14 @@
 <%- layout('layouts/main.ejs') %>
 
 
-<div class="row">
+<div class="row" style="overflow: hidden;">
     <% for(var i=0; i < services.length; i++) { %>
-    <div class="col offset-md-auto">
-        <div class="card" style="width: 22rem; ">
+    <div class="col offset-md-12">
+        <div class="card" style="width: 19rem; ">
             <img class="card-img-top" src="https://i.ibb.co/PWPj1CX/card2.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title text-center" style="font-family: Cambria; font-weight: bold;"><%= services[i].title %></h5>
-              <hr><p class="card-text text-center"><h9><%= services[i].description %></h9></p>
-              <a href="#" style="width: 19.3rem;  " class="btn btn-primary">Consultar</a>
+            <div class="card-body" style="width: 19rem; ">
+              <h5 class="card-title text-center" style="font-family: Cambria; font-weight: bold; width: 16.3rem; "><%= services[i].title %></h5>
+              <hr><p class="card-text text-center" style="width: 16.3rem;  "><h9><%= services[i].description %></h9></p>
             </div>
           </div>
     </div>
