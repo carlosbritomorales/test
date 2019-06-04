@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+  
+  <head>
+      <meta charset='utf-8'>
+      <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Searchvice</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+  
+  <!--Navbar -->
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color bg-dark">
+      
+      <a class="navbar-brand" href="#">Searchvices</a>
+        
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+          aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+          
+          <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Inicio
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+           
+            <li class="nav-item">
+              <a class="nav-link" href="/client">Nosotros</a>
+            </li>
+            
+          </ul>
+          
+          <ul class="navbar-nav ml-auto nav-flex-icons">
+            
+            <li class="nav-item">
+              
+              <a class="nav-link waves-effect waves-light">
+                <i class="fab fa-twitter"></i>
+              </a>
+            
+            </li>
+           
+            <li class="nav-item">
+              
+              <a class="nav-link waves-effect waves-light">
+                <i class="fab fa-google-plus-g"></i>
+              </a>
+            
+            </li>
+            
+            <li class="nav-item dropdown">
+                
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                 
+                  <% if (user) { %>
+                    <i class="fas fa-user">Hola <%= user.name %> </i>
+                  <% } else { %>
+                    <i class="fas fa-user">Hola Anónimo</i>
+                  <% } %>
+
+              </a>
+              
+                  <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                      aria-labelledby="navbarDropdownMenuLink-333">
+                      <% if (user) { %>
+                        <a class="dropdown-item" href="/profile">Perfil</a>
+                        <% if (user.isServiceProvider()) { %><a class="dropdown-item" href="/myservices">Mis Servicios</a><% } %>
+                        <a class="dropdown-item" href="/logout">Salir</a>
+                      <% } else { %>
+                        <a class="dropdown-item" href="/signin">Ingresa</a>
+                        <a class="dropdown-item" href="/signup">Registrate</a>
+                      <% } %>
+                  </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!--/.Navbar -->
+
+      <div class="container mt-4 text-center col-md-4 offset-md-4">
+          <% if(signupMessage.length > 0){ %>
+              <div class="alert alert-danger"><%= signupMessage %></div>     
+          <% } %>
+      
+          <% if(signinMessage.length > 0){ %>
+              <div class="alert alert-danger"><%= signinMessage %></div>     
+          <% } %>
+      </div>
+
+      <%- body %>
+
+    </div><br><hr>
+    
+    <div class="row">
+      <div class="text-center col-lg-6 offset-lg-3">
+        <h4>S E A R C H V I C E S</h4>
+        <p>Copyright &copy; 2019 &middot; Todos los derechos reservados &middot; <a href="#" >viceteam</a></p>
+      </div>
+    </div>
+  </div>
+
+  </body>
+</html>

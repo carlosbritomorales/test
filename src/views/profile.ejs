@@ -1,0 +1,27 @@
+<%- layout('layouts/main.ejs') %>
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card mt-2 text-center">
+          <div class="card-header"><h3>Perfil de Usuario</h3></div>
+            <div class="card-body">
+              <p class="card-text"><ul>
+                <li>Nombre de Usuario: <%= user.name %></li>
+                <li>Edad: <%= user.birthdate %></li>
+                <li>Email: <%= user.email %></li>
+                <li>Id: <%= user._id %></li>
+                <li>Service: <%= services.length %></li>
+               
+                
+                <% for(var i=0; i < user.services.length; i++) { %>
+                  <li>Servicio: <%= user.services[i].name %></li>
+                  <%= i + 1%>
+
+                  
+                <% } %>
+
+            </ul></p>
+            </div>
+        </div>
+    </div>
+  </div>
