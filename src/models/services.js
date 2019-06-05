@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const ServiceSchema = Schema({
   title: String,
   userid: String,
+  username: String,
   description: String,
   status: {
   type: Boolean,
