@@ -39,6 +39,13 @@ router.get('/myservices', async(req, res) => {
     });
 });
 
+router.get('/searchservices', async(req, res) => {
+    const services = await Service.find();
+    res.render('searchservices',{
+        services
+    });
+});
+
 router.get('/turn/:id', async (req, res, next) => {
     let { id } = req.params;
     const service = await Service.findById(id);

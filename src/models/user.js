@@ -6,8 +6,10 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   name: String,
   usertype: {type: String, default: "services-off"},
+  tempsearch: String,
   birthdate: Date,
   email: String,
+  rating: Number,
   password: String,
   services: [{
     name: String,
