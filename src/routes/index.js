@@ -12,33 +12,58 @@ router.get('/', async(req, res) => {
     });
 });
 
-router.get('/client', function(req, res, next) {
-
-    if (req.isAuthenticated()) {
-        console.log(req.user.isServiceProvider());
-        res.render('client')
-    } else {
-        console.log(req.user.name);
-        res.sendStatus(403) // Forbidden
-    }
-})
-
 router.get('/main', function (req, res, next) {
     //console.log(req.user.name);
     res.render('main');
 });
 
-router.get('/', function (req, res, next) {
-    //console.log(req.user.name);
-    res.render('index');
+//Rutas relacionadas con Manejo de Usuarios [Registro (Signup), Inicio de sesión (Signin) y (Logout)]
+router.get('/signup', (req, res, next) => {
+    res.render('signup');
 });
 
+router.post('/signup', passport.authenticate('local-signup' ,{
+    successRedirect: '/profile',
+    failureRedirect: '/signup',
+    passReqToCallback: true
+}));
+
+router.get('/signin', (req, res, next) => {
+    res.render('signin');
+});
+
+router.post('/signin', passport.authenticate('local-signin' ,{
+    successRedirect: '/profile',
+    failureRedirect: '/signin',
+    passReqToCallback: true
+}));
+
+router.use((req,res,next) => {
+    isAuthenticated(req,res,next);
+    next();
+});
+
+//Rutas relacionadas con Manejo de Servicios (Agregar, Eliminar y Editar)
 router.get('/myservices', async(req, res) => {
     const services = await Service.find();
 
     res.render('myservices',{
         services
     });
+});
+
+router.post('/add', async(req, res) => {
+    const service = new Service(req.body);
+    await service.save();
+    res.redirect('/myservices');
+    //console.log(new Service(req.body));
+    //res.send('received');
+});
+
+router.get('/delete/:id', async (req, res, next) => {
+    let { id } = req.params;
+    await Service.remove({_id: id});
+    res.redirect('/myservices');
 });
 
 router.get('/turn/:id', async (req, res, next) => {
@@ -48,7 +73,7 @@ router.get('/turn/:id', async (req, res, next) => {
     await service.save();
     res.redirect('/myservices');
 });
-//
+
 router.get('/editService/:id', async (req, res, next) => {
     const service = await Service.findById(req.params.id);
     console.log(service)
@@ -60,7 +85,17 @@ const { id } = req.params;
 await Service.update({_id: id}, req.body);
 res.redirect('/myservices');
 });
-//
+
+//Rutas relacionadas con Busqueda de Servicios
+router.get('/searchService', async(req, res) => {
+    const users = await User.find();
+    const services = await Service.find();
+
+    res.render('searchService',{
+        users,
+        services
+    });
+});
 
 router.get('/editsearchservice/:id', async (req, res, next) => {
     const users = await User.findById(req.params.id);
@@ -85,26 +120,13 @@ router.post('/editsearchservice/:id', async (req, res, next) => {
     res.redirect('/searchService');
 });
 
-router.get('/searchService', async(req, res) => {
-    const users = await User.find();
-    const services = await Service.find();
-
-    res.render('searchService',{
-        users,
-        services
-    });
-
-
-
-});
-
 router.get('/deletesearch/:id', async (req, res, next) => {
     let { id } = req.params;
     await User.remove({_id: id});
     res.redirect('/searchService');
   });
 
-  router.post('/addsearch', async(req, res) => {
+router.post('/addsearch', async(req, res) => {
     const user = new User(req.body);
     await user.save();
     res.redirect('/searchService');
@@ -112,25 +134,11 @@ router.get('/deletesearch/:id', async (req, res, next) => {
     //res.send('received');
 });
 
-  router.get('/delete/:id', async (req, res, next) => {
-    let { id } = req.params;
-    await Service.remove({_id: id});
-    res.redirect('/myservices');
-  });
-
-router.post('/add', async(req, res) => {
-    const service = new Service(req.body);
-    await service.save();
-    res.redirect('/myservices');
-    //console.log(new Service(req.body));
-    //res.send('received');
-});
-
+//Rutas relacionadas con Solicitudes de Servicios
 router.get('/myrequest', async(req, res) => {
     const users = await User.find();
     const services = await Service.find();
     const request = await Request.find();
-    
 
     res.render('myrequest',{
         users,
@@ -151,15 +159,11 @@ const { id } = req.params;
 await Request.update({_id: id}, req.body);
 res.redirect('/requestservice');
 });
-//
-
 
 router.post('/addrequest', async(req, res) => {
     const request = new Request(req.body);
     await request.save();
     res.redirect('/myrequest');
-    //console.log(new Service(req.body));
-    //res.send('received');
 });
 
 router.get('/requestservice', async(req, res) => {
@@ -183,35 +187,9 @@ res.redirect('/requestservice');
 });
 //
 
-
-router.get('/signup', (req, res, next) => {
-    res.render('signup');
-});
-
-router.post('/signup', passport.authenticate('local-signup' ,{
-    successRedirect: '/profile',
-    failureRedirect: '/signup',
-    passReqToCallback: true
-}));
-
-router.get('/signin', (req, res, next) => {
-    res.render('signin');
-});
-
-router.post('/signin', passport.authenticate('local-signin' ,{
-    successRedirect: '/profile',
-    failureRedirect: '/signin',
-    passReqToCallback: true
-}));
-
 router.get('/logout', (req, res, next) => {
     req.logout();
     res.redirect('/');
-});
-
-router.use((req,res,next) => {
-    isAuthenticated(req,res,next);
-    next();
 });
 
 router.get('/profile', (req, res) => {
