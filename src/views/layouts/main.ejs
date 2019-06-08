@@ -68,6 +68,7 @@
                         <a class="dropdown-item" href="/profile">Perfil</a>
                         <% if (user.isServiceProvider()) { %><a class="dropdown-item" href="/myservices">Mis Servicios</a><% } %>
                         <% if (!user.isServiceProvider()) { %><a class="dropdown-item" href="/editsearchservice/<%= user._id %>">Buscar Servicios</a><% } %>
+                        <% if (!user.isServiceProvider()) { %><a class="dropdown-item" href="/myrequest">Mis Solicitudes</a><% } %>
                         <a class="dropdown-item" href="/logout">Salir</a>
                       <% } else { %>
                         <a class="dropdown-item" href="/signin">Ingresa</a>

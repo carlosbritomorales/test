@@ -8,8 +8,11 @@
           <thead>
             <tr>
               <th>N°</th>
-              <th>Usuario</th>
               <th>Servicio</th>
+              <th>Solicitar</th>
+              <th>Prestador</th>
+              <th>Valoración</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -17,8 +20,10 @@
              <% if (user.tempsearch == services[i].category) { %>
               <tr>
                 <td><%= j++%></td>
-                <td><strong><%= services[i].userid %></strong></td>
-                <td><%= services[i].title %></td>                
+                <td><%= services[i].title %></td> 
+                <td><a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Solicitar</button></a> %></td>                
+                <td></td>
+                <td></td>
               </tr>
               <% } %>
             <% } %>

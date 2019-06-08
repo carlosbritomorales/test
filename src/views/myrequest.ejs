@@ -1,0 +1,35 @@
+<%- layout('layouts/main.ejs') %>
+
+<h1>Mis Solicitudes</h1>
+
+ <!-- LIST -->
+ <div class="col-md-7">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Titulo</th>
+              <th>Fecha de Solicitud</th>
+              <th>Calificación</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i=0,j=1; i < request.length; i++) { %>
+                <% if (user._id == request[i].userid) { %>                
+                <tr>
+                    <td><%= j++%></td>
+                    <td><strong><%= request[i].title %></strong></td>
+                    <td></td>    
+                    <td></td> 
+                    <td></td>           
+                </tr>
+                <% } %>
+            <% } %>
+          </tbody>
+        </table>
+  
+      </div>
+    </div>
+  
+  </div>

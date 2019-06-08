@@ -3,6 +3,7 @@ const passport = require('passport');
 
 const Service = require('../models/services');
 const User = require('../models/user');
+const Request = require('../models/request');
 
 router.get('/', async(req, res) => {
     const services = await Service.find();
@@ -124,6 +125,64 @@ router.post('/add', async(req, res) => {
     //console.log(new Service(req.body));
     //res.send('received');
 });
+
+router.get('/myrequest', async(req, res) => {
+    const users = await User.find();
+    const services = await Service.find();
+    const request = await Request.find();
+    
+
+    res.render('myrequest',{
+        users,
+        services,
+        request,
+    });
+
+});
+
+router.get('/myrequest/:id', async (req, res, next) => {
+    const request = await Request.findById(req.params.id);
+    console.log(request)
+    res.render('myrequest', { request });
+});
+
+router.post('/myrequest/:id', async (req, res, next) => {
+const { id } = req.params;
+await Request.update({_id: id}, req.body);
+res.redirect('/requestservice');
+});
+//
+
+
+router.post('/addrequest', async(req, res) => {
+    const request = new Request(req.body);
+    await request.save();
+    res.redirect('/myrequest');
+    //console.log(new Service(req.body));
+    //res.send('received');
+});
+
+router.get('/requestservice', async(req, res) => {
+    
+    res.render('requestservice',{
+        
+    });
+
+});
+
+router.get('/requestservice/:id', async (req, res, next) => {
+    const service = await Service.findById(req.params.id);
+    console.log(service)
+    res.render('requestservice', { service });
+});
+  
+router.post('/requestservice/:id', async (req, res, next) => {
+const { id } = req.params;
+await Service.update({_id: id}, req.body);
+res.redirect('/requestservice');
+});
+//
+
 
 router.get('/signup', (req, res, next) => {
     res.render('signup');
