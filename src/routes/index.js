@@ -38,10 +38,6 @@ router.post('/signin', passport.authenticate('local-signin' ,{
     passReqToCallback: true
 }));
 
-router.use((req,res,next) => {
-    isAuthenticated(req,res,next);
-    next();
-});
 
 //Rutas relacionadas con Manejo de Servicios (Agregar, Eliminar y Editar)
 router.get('/myservices', async(req, res) => {
@@ -192,6 +188,13 @@ router.get('/logout', (req, res, next) => {
     res.redirect('/');
 });
 
+
+//vvvvvv Todo lo que está entre este middleware solo puede ser accesado por usuarios en sesión activa vvvvvv
+router.use((req,res,next) => {
+    isAuthenticated(req,res,next);
+    next();
+});
+
 router.get('/profile', (req, res) => {
     const services = Service.find();
     //res.render('profile');
@@ -200,6 +203,7 @@ router.get('/profile', (req, res) => {
     });
 });
 
+//^^^^^ Todo lo que está entre este middleware solo puede ser accesado por usuarios en sesión activa ^^^^^
 function isAuthenticated(req,res,next) {
     if(req.isAuthenticated()){
         return next();
