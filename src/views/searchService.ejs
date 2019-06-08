@@ -1,35 +1,23 @@
 <%- layout('layouts/main.ejs') %>
 
-<div class="container">
+<div class="row" style="padding: 40px ">
   
-      <!-- LIST -->
-    <div class="col-md-7">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>N°</th>
-              <th>Servicio</th>
-              <th>Solicitar</th>
-              <th>Prestador</th>
-              <th>Valoración</th>
-              
-            </tr>
-          </thead>
-          <tbody>
-            <% for(var i=0,j=1; i < services.length; i++) { %>
-             <% if (user.tempsearch == services[i].category) { %>
-              <tr>
-                <td><%= j++%></td>
-                <td><%= services[i].title %></td> 
-                <td><a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Solicitar</button></a> %></td>                
-                <td></td>
-                <td></td>
-              </tr>
-              <% } %>
-            <% } %>
-          </tbody>
-        </table>
-  
+  <% for(var i=0; i < services.length; i++) { %>
+    <% if (user.tempsearch == services[i].category) { %>
+    <div style="padding: 5px ">
+    <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+        <div class="card-header text-center font-weight-bold bg-dark"><%= services[i].title %></div>
+        <img class="card-img-top" style="max-width: 10rem; max-height: 10rem; display:block; margin:auto;" src="https://images.vexels.com/media/users/3/135118/isolated/preview/676bf0e9f3c16649cd7f426c6dcd755a-flat-user-sign-with-round-background-by-vexels.png" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-title text-center bg-dark" style="border-radius: 20px">Prestador: <%= services[i].username %></p>
+        <p class="card-title text-center bg-danger" style="border-radius: 5px; padding: 5px;"><% if (services[i].status) { %> <img style="width: 20px; height: 20px;" src="https://i.ibb.co/wYx2XQn/clock.png" alt=""> Disponibilidad Inmediata <% } else { %> Confirmar Disponibilidad <% } %></p>
+          <hr><p class="card-text text-justify bg-dark" style="border-radius: 5px; padding: 5px;"><%= services[i].description %></p><hr>
+          <% if (user && !user.isServiceProvider()) { %><a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Solicitar</button></a>&nbsp&nbsp&nbsp<img style="width: 20px; height: 20px;" src="https://i.ibb.co/mC7Zrm0/star.png" alt=""><img style="width: 20px; height: 20px;" src="https://i.ibb.co/mC7Zrm0/star.png" alt=""><img style="width: 20px; height: 20px;" src="https://i.ibb.co/mC7Zrm0/star.png" alt=""><img style="width: 20px; height: 20px;" src="https://i.ibb.co/mC7Zrm0/star.png" alt=""><img style="width: 20px; height: 20px;" src="https://i.ibb.co/mC7Zrm0/star.png"><% } %>
+        </div>
       </div>
     </div>
-  
+    <% } %>
+  <% } %>
+</div>
+
+
