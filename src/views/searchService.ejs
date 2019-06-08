@@ -1,0 +1,30 @@
+<%- layout('layouts/main.ejs') %>
+
+<div class="container">
+  
+      <!-- LIST -->
+    <div class="col-md-7">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Usuario</th>
+              <th>Servicio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i=0,j=1; i < services.length; i++) { %>
+             <% if (user.tempsearch == services[i].category) { %>
+              <tr>
+                <td><%= j++%></td>
+                <td><strong><%= services[i].userid %></strong></td>
+                <td><%= services[i].title %></td>                
+              </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+  
+      </div>
+    </div>
+  

@@ -34,14 +34,8 @@ router.get('/', function (req, res, next) {
 
 router.get('/myservices', async(req, res) => {
     const services = await Service.find();
-    res.render('myservices',{
-        services
-    });
-});
 
-router.get('/searchservices', async(req, res) => {
-    const services = await Service.find();
-    res.render('searchservices',{
+    res.render('myservices',{
         services
     });
 });
@@ -53,18 +47,69 @@ router.get('/turn/:id', async (req, res, next) => {
     await service.save();
     res.redirect('/myservices');
 });
-
+//
 router.get('/editService/:id', async (req, res, next) => {
     const service = await Service.findById(req.params.id);
     console.log(service)
     res.render('editService', { service });
-  });
+});
   
-  router.post('/editService/:id', async (req, res, next) => {
+router.post('/editService/:id', async (req, res, next) => {
+const { id } = req.params;
+await Service.update({_id: id}, req.body);
+res.redirect('/myservices');
+});
+//
+
+router.get('/editsearchservice/:id', async (req, res, next) => {
+    const users = await User.findById(req.params.id);
+
+    const userss = await User.find();
+    const services = await Service.find();
+
+    res.render('editsearchservice',{
+        users,
+        userss,
+        services
+    });
+
+    console.log(users)
+    //res.render('editsearchservice', { users });
+    //res.render('searchService', { users });
+});
+  
+router.post('/editsearchservice/:id', async (req, res, next) => {
     const { id } = req.params;
-    await Service.update({_id: id}, req.body);
-    res.redirect('/myservices');
+    await User.update({_id: id}, req.body);
+    res.redirect('/searchService');
+});
+
+router.get('/searchService', async(req, res) => {
+    const users = await User.find();
+    const services = await Service.find();
+
+    res.render('searchService',{
+        users,
+        services
+    });
+
+
+
+});
+
+router.get('/deletesearch/:id', async (req, res, next) => {
+    let { id } = req.params;
+    await User.remove({_id: id});
+    res.redirect('/searchService');
   });
+
+  router.post('/addsearch', async(req, res) => {
+    const user = new User(req.body);
+    await user.save();
+    res.redirect('/searchService');
+    //console.log(new Service(req.body));
+    //res.send('received');
+});
 
   router.get('/delete/:id', async (req, res, next) => {
     let { id } = req.params;

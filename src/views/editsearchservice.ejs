@@ -1,0 +1,26 @@
+<%- layout('layouts/main.ejs') %>
+
+<div class="container">
+    <div class="row">
+      <!--FORM-->
+      <div class="col-md-5 offset-md-3">
+        <div class="card">
+         <div class="card-header"><h3>Búsqueda</h3></div>
+          <div class="card-body">
+            <form action="/editsearchservice/<%= users._id %>" method="post">
+                <select name="tempsearch">
+                    <option value="Construcción">Construcción</option> 
+                    <option value="Estética" selected>Estética</option>
+                    <option value="Moda">Moda</option>
+                </select>
+              <button class="btn btn-primary" type="submit">
+                Buscar 
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
