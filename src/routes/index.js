@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
 
+const Moment = require('moment');
 const Service = require('../models/services');
 const User = require('../models/user');
 const Request = require('../models/request');
@@ -132,15 +133,23 @@ router.post('/addsearch', async(req, res) => {
 
 //Rutas relacionadas con Solicitudes de Servicios
 router.get('/myrequest', async(req, res) => {
+
     const users = await User.find();
     const services = await Service.find();
     const request = await Request.find();
 
-    res.render('myrequest',{
-        users,
-        services,
-        request,
-    });
+    var moment = require('moment');
+
+    //exports.myrequest = function(req, res) {
+    
+        res.render('myrequest', { 
+            moment: moment,
+            users,
+            services,
+            request,
+        });
+    
+    //}
 
 });
 
@@ -165,21 +174,23 @@ router.post('/addrequest', async(req, res) => {
 router.get('/requestservice', async(req, res) => {
     
     res.render('requestservice',{
-        
+        moment: moment,
     });
 
 });
 
 router.get('/requestservice/:id', async (req, res, next) => {
     const service = await Service.findById(req.params.id);
+    const moment = require('moment');
     console.log(service)
-    res.render('requestservice', { service });
+    res.render('requestservice', { service, moment: moment });
 });
   
 router.post('/requestservice/:id', async (req, res, next) => {
-const { id } = req.params;
-await Service.update({_id: id}, req.body);
-res.redirect('/requestservice');
+    const { id } = req.params;
+    await Service.update({_id: id}, req.body);
+    res.render('requestservice', { moment: moment });
+    //res.redirect('/requestservice');
 });
 //
 

@@ -4,6 +4,8 @@ const Schema = mongoose.Schema;
 const RequestSchema = Schema({
   title: String,
   userid: String,
+  providername: String,
+  requestdate: String,
   category: String,
   rating: Number,
   description: String,

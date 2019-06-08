@@ -6,6 +6,7 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
+const moment = require('moment');
 
 
 //inicializaciones
@@ -18,6 +19,9 @@ app.set('views', path.join(__dirname,'views'));
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 3000);
+
+//fechas
+moment.locale('es');
 
 //middlewares
 app.use(bodyParser.urlencoded({extended:false}));
