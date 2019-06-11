@@ -11,9 +11,28 @@
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </head>
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      
+      <style>.checked {
+          color: orange;
+        }</style>
+    </head>
 
   <body>
+
+    <script>/* Javascript */
+ 
+        //Make sure that the dom is ready
+        $(function () {
+         
+          $("#rateYo").rateYo({
+            rating: 3.6
+          });
+         
+        });</script>
   
   <!--Navbar -->
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color bg-dark">
@@ -36,7 +55,7 @@
             <li class="nav-item">
               
               <a class="nav-link waves-effect waves-light">
-                <i class="fab fa-twitter"></i>
+                <i class="fab twitter"></i>
               </a>
             
             </li>
@@ -55,9 +74,9 @@
                   aria-haspopup="true" aria-expanded="false">
                  
                   <% if (user) { %>
-                    <i class="fas fa-user">Hola <%= user.name %> </i>
+                    <i class="fas user">Hola <%= user.name %> </i>
                   <% } else { %>
-                    <i class="fas fa-user">Hola Anónimo</i>
+                    <i class="fas user">Hola Anónimo</i>
                   <% } %>
 
               </a>
@@ -94,11 +113,42 @@
       <%- body %>
 
     </div>
-    
-    
 
   </body>
+  
 
-  <footer class="text-center"><hr><strong> ||||||| S E A R C H V I C E S &reg; |||||||  <hr></footer>
+  
+  <script>
+  
+  jQuery(document).ready(function($){
+	    
+      $(".btnrating").on('click',(function(e) {
+      
+      var previous_value = $("#selected_rating").val();
+      
+      var selected_value = $(this).attr("data-attr");
+      $("#selected_rating").val(selected_value);
+      
+      $(".selected-rating").empty();
+      $(".selected-rating").html(selected_value);
+      
+      for (i = 1; i <= selected_value; ++i) {
+      $("#rating-star-"+i).toggleClass('btn-warning');
+      $("#rating-star-"+i).toggleClass('btn-default');
+      }
+      
+      for (ix = 1; ix <= previous_value; ++ix) {
+      $("#rating-star-"+ix).toggleClass('btn-warning');
+      $("#rating-star-"+ix).toggleClass('btn-default');
+      }
+      
+      }));
+      
+        
+    });
+  
+  </script>
+
+  <footer class="text-center"><br><br><br><br><br><br><br><br><hr><strong> ||||||| S E A R C H V I C E S &reg; |||||||  <hr></footer>
 
 </html>

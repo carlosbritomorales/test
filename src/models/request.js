@@ -7,7 +7,7 @@ const RequestSchema = Schema({
   providername: String,
   requestdate: String,
   category: String,
-  rating: Number,
+  rating: String,
   description: String,
   status: {
   type: Boolean,

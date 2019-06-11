@@ -6,6 +6,7 @@ const Service = require('../models/services');
 const User = require('../models/user');
 const Request = require('../models/request');
 
+
 router.get('/', async(req, res) => {
     const services = await Service.find();
     res.render('index',{
@@ -162,7 +163,7 @@ router.get('/myrequest/:id', async (req, res, next) => {
 router.post('/myrequest/:id', async (req, res, next) => {
 const { id } = req.params;
 await Request.update({_id: id}, req.body);
-res.redirect('/requestservice');
+res.redirect('/myrequest');
 });
 
 router.post('/addrequest', async(req, res) => {
@@ -173,23 +174,39 @@ router.post('/addrequest', async(req, res) => {
 
 router.get('/requestservice', async(req, res) => {
     
+    const users = await User.find();
+    const services = await Service.find();
+    const request = await Request.find();
+
     res.render('requestservice',{
-        moment: moment,
+        request,
+        users,
+        services,
     });
 
 });
 
+router.post('/rateservice/:id', async (req, res, next) => {
+    const { id } = req.params;
+    await Service.update({_id: id}, req.body);
+    res.redirect('/myrequest');
+    });
+
 router.get('/requestservice/:id', async (req, res, next) => {
     const service = await Service.findById(req.params.id);
+    const services = await Service.find();
+    const request = await Request.find();
     const moment = require('moment');
     console.log(service)
-    res.render('requestservice', { service, moment: moment });
+    res.render('requestservice', { request, service, services, moment: moment });
 });
   
 router.post('/requestservice/:id', async (req, res, next) => {
     const { id } = req.params;
+    const request = await Request.find();
+    const services = await Service.find();
     await Service.update({_id: id}, req.body);
-    res.render('requestservice', { moment: moment });
+    res.render('requestservice', { request, services, moment: moment });
     //res.redirect('/requestservice');
 });
 //

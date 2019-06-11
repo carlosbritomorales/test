@@ -9,7 +9,7 @@ const userSchema = new Schema({
   tempsearch: String,
   birthdate: Date,
   email: String,
-  rating: Number,
+  rating: String,
   password: String,
   services: [{
     name: String,
