@@ -1,13 +1,10 @@
 <%- layout('layouts/main.ejs') %>
 
-<div class="container">
 
-    <div class="row">
-      <!--FORM-->
-      <div class="col-md-5">
-        <div class="card">
-            <div class="card-header"><h3>Solicita el servicio</h3></div>
-          <div class="card-body">
+<div class="col-md-4 offset-md-4">
+    <div class="card mt-2 text-center">
+      <div class="card-header"><h3>Confirmar Servicio</h3></div>
+        <div class="card-body">
             <form action="/addrequest" method="post">
               <div class="form-group">
                 <input id="hidden_field" name="title" type="hidden" value="<%= service.title %>" />
@@ -21,10 +18,18 @@
                 <div class="form-group">
                     <input id="hidden_field" name="requestdate" type="hidden" value="<%= moment().format('D [de] MMMM [del] YYYY, h:mm:ss A'); %>" />
                   </div>
-              <button class="btn btn-primary" type="submit">
-                Agregar!
-              </button>
+                  <p class="text-justify"><%= user.name %> nuestro objetivo es brindarte un buen servicio, para ello te pedimos que verifiques los datos del proveedor y decidas si es lo que necesitas realmente. ¡Gracias!</p>
+                  <p>&bull; <%= service.title %> / <%= service.category %><br>&bull; Ofrecido por <%= service.username %><br></p>
+                  
+              <button class="btn btn-primary conntet-alingn-center" type="submit">
+                  ¡Confirmar!
+                </button>
             </form>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
+
+
+      
+        
+    
