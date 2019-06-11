@@ -1,14 +1,13 @@
 <%- layout('layouts/main.ejs') %>
-
-<h1>Mis Solicitudes</h1>
-
+<h1 class="text-center">Mis Solicitudes</h1>
  <!-- LIST -->
- <div class="col-md-7">
+ <div class="col-md-auto">
         <table class="table table-bordered table-hover">
           <thead>
                 <tr>
                   <th>N°</th>
-                  <th>Titulo</th>
+                  <th>Descripción</th>
+                  <th>Fecha</th>
                 </tr>
               </thead>  
           <tbody>
@@ -16,8 +15,8 @@
                 <% if (user._id == request[i].userid) { %>                
                 <tr>
                     <td><%= j++%></td>
-                    <td>Servicio de <strong><%= request[i].title %></strong> por <strong><%= request[i].providername %></strong> el día <strong><%= request[i].requestdate %></strong></td>
-                              
+                    <td>Servicio de <strong><%= request[i].title %></strong> por <strong><%= request[i].providername %></strong></td>
+                    <td><strong><%= request[i].requestdate %></strong></td>          
                 </tr>
                 <% } %>
             <% } %>
