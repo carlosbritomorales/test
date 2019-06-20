@@ -1,29 +1,34 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Searchvices</title>
   
-  <head>
-      <meta charset='utf-8'>
-      <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Searchvices</title>
-      <link rel="stylesheet" href="/css/style.css">
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
       <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
-      <style>.checked {
-          color: orange;
-      }</style>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <!-- LEAFLET CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+     integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin=""/>
+  <!-- CUSTOM CSS  -->
+  <link rel="stylesheet" href="/css/main.css">
+  <style>.checked {
+    color: orange;
+}</style>
+</head>
 
-    </head>
+<body>
 
-  <body>
-
-  <!--Navbar -->
+ <!--Navbar -->
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color bg-dark">
       <img src="https://i.ibb.co/bvzj49b/svlogo.png" weight="50px" height="50px">
-      <a class="navbar-brand" href="/">&nbsp&nbspSearchvices</a>
+      <a class="navbar-brand" href="/" >&nbsp;&nbsp;&nbsp;Searchvices</a>
+      
         
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
           aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,25 +38,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
           
           <ul class="navbar-nav mr-auto">
-            
+            <a class="nav-item" href="/services" >Servicios</a>
           </ul>
           
           <ul class="navbar-nav ml-auto nav-flex-icons">
             
-            <li class="nav-item">
-              
-              <a class="nav-link waves-effect waves-light">
-                <i class="fab twitter"></i>
-              </a>
-            
-            </li>
            
             <li class="nav-item">
               
-              <a class="nav-link waves-effect waves-light">
-                <i class="fab fa-google-plus-g"></i>
-              </a>
-            
             </li>
             
             <li class="nav-item dropdown">
@@ -86,22 +80,15 @@
       </nav>
       <!--/.Navbar -->
 
-      <div class="container mt-4 text-center col-md-4 offset-md-4">
-          <% if(signupMessage.length > 0){ %>
-              <div class="alert alert-danger"><%= signupMessage %></div>     
-          <% } %>
-      
-          <% if(signinMessage.length > 0){ %>
-              <div class="alert alert-danger"><%= signinMessage %></div>     
-          <% } %>
-      </div>
+  <%- body %>
 
-      <%- body %>
-
-    </div>
-
-  </body>
-  
-<footer class="text-center"><br><br><br><br><br><br><br><br><hr><strong> ||||||| S E A R C H V I C E S &reg; |||||||  <hr></footer>
-
+  <!-- LEAFTLET JS -->
+   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+        integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+           crossorigin=""></script>
+  <!-- SOCKET.IO -->
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- CUSTOM JS -->
+  <script src="/js/main.js"></script>
+</body>
 </html>

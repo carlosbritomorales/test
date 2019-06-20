@@ -1,6 +1,9 @@
 const express = require('express');
-const engine = require('ejs-mate');
+const http = require('http');
+const socketIO = require('socket.io');
 const path = require('path');
+const engine = require('ejs-mate');
+
 const morgan = require('morgan');
 const passport = require('passport');
 const session = require('express-session');
@@ -8,27 +11,22 @@ const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const moment = require('moment');
 
-
-
-//inicializaciones
 const app = express();
-require('./database');
-require('./passport/local-auth');
+const server = http.Server(app);
+const io = socketIO(server);
 
-//configuraciones
-app.set('views', path.join(__dirname,'views'));
-app.engine('ejs', engine);
-app.set('view engine', 'ejs');
-app.set('port', process.env.PORT || 3000);
+require('../database');
+require('./passport/local-auth');
 
 //fechas
 moment.locale('es');
 
-//middlewares
-app.use(express.static("public"));
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
+// settings
+app.set('views', path.join(__dirname, 'views'));
+app.engine('ejs', engine);
+app.set('view engine', 'ejs');
 
+// middlewares
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(session({
@@ -50,13 +48,17 @@ app.use((req,res,next) => {
 })
 
 //routes
-app.use('/', require('./routes/index'));
 
-//iniciando el servidor 
-app.listen(app.get('port'), () => {
-    console.log('Servidor en puerto', app.get('port'));
+// routes
+app.use(require('./routes'));
+
+// sockets
+require('./sockets')(io);
+
+// Static files
+app.use(express.static(path.join(__dirname, 'public')));
+
+// starting the server
+server.listen(3000, () => {
+  console.log('Server on port', 3000);
 });
-
-
-
-
