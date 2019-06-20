@@ -65,6 +65,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 //});
 
 //iniciando el servidor 
-app.listen(app.get('port'), () => {
+server.listen(app.get('port'), () => {
   console.log('Servidor en puerto', app.get('port'));
 });
