@@ -15,7 +15,7 @@
                 <% if (user._id == request[i].userid) { %>                
                 <tr>
                     <td><%= j++%></td>
-                    <td>Servicio de <strong><%= request[i].title %></strong> por <strong><%= request[i].providername %></strong>el <strong><%= request[i].requestdate %></strong></td>
+                    <td>Servicio de <strong><%= request[i].title %></strong> brindado por <strong><%= request[i].providername %></strong> el <strong><%= request[i].requestdate %></strong></td>
                         <% for(var k=0; k < services.length; k++) { %>
                             <% if (request[i].title == services[k].title) { %>  
                           <form action="/rateservice/<%= services[k]._id %>" method="POST">

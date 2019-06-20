@@ -197,10 +197,13 @@ router.get('/requestservice', async(req, res) => {
   const services = await Service.find();
   const request = await Request.find();
 
+  const moment = require('moment');
+
   res.render('requestservice',{
       request,
       users,
       services,
+      moment,
   });
 
 });
