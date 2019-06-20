@@ -4,7 +4,7 @@ const tileURL = 'https://b.tile.openstreetmap.org/{z}/{x}/{y}.png'
 const tileURL2 = 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png';
 const tileURL3 = 'http://b.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png';
 
-const tile = L.tileLayer(tileURL3);
+const tile = L.tileLayer(tileURL);
 
 // Socket Io
 const socket = io.connect();
