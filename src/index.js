@@ -25,6 +25,7 @@ moment.locale('es');
 app.set('views', path.join(__dirname, 'views'));
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
+app.set('port', process.env.PORT || 3000);
 
 // middlewares
 app.use(morgan('dev'));
@@ -59,6 +60,11 @@ require('./sockets')(io);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // starting the server
-server.listen(3000, () => {
-  console.log('Server on port', 3000);
+//server.listen(3000, () => {
+  //console.log('Server on port', 3000);
+//});
+
+//iniciando el servidor 
+app.listen(app.get('port'), () => {
+  console.log('Servidor en puerto', app.get('port'));
 });
