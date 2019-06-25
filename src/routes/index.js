@@ -8,8 +8,11 @@ const Service = require('../models/services');
 const User = require('../models/user');
 const Request = require('../models/request');
 
-router.get('/', (req, res) => {
-  res.render('index');
+router.get('/', async(req, res) => {
+  const services = await Service.find();
+  res.render('index',{
+    services
+});
 });
 
 router.get('/services', async(req, res) => {
@@ -29,9 +32,17 @@ router.get('/profile', (req, res) => {
   });
 });
 
-router.get('/main', function (req, res, next) {
+router.get('/main', async(req, res) => {
   //console.log(req.user.name);
-  res.render('main');
+  const services = await Service.find();
+  res.render('main',{
+    services
+  });
+});
+
+router.get('/map', function (req, res, next) {
+  //console.log(req.user.name);
+  res.render('map');
 });
 
 //Rutas relacionadas con Manejo de Usuarios [Registro (Signup), Inicio de sesión (Signin) y (Logout)]

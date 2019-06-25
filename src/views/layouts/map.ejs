@@ -1,8 +1,97 @@
-<!-- LEAFTLET JS -->
-<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
-integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
-   crossorigin=""></script>
-<!-- SOCKET.IO -->
-<script src="/socket.io/socket.io.js"></script>
-<!-- CUSTOM JS -->
-<script src="/js/main.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Searchvices</title>
+      <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <!-- LEAFLET CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+     integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin=""/>
+  <!-- CUSTOM CSS  -->
+  <link rel="stylesheet" href="/css/main.css">
+  <style>.checked {
+    color: orange;
+}</style>
+</head>
+
+<body>
+
+ <!--Navbar -->
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color bg-dark">
+      <img src="https://i.ibb.co/bvzj49b/svlogo.png" weight="50px" height="50px">
+      <a class="navbar-brand" href="/" >&nbsp;&nbsp;&nbsp;Searchvices</a>
+      
+        
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+          aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+          
+          <ul class="navbar-nav mr-auto">
+          <a class="nav-item" href="/services" ><br>Servicios</a>
+          </ul>
+          
+          <ul class="navbar-nav ml-auto nav-flex-icons">
+            
+           
+            <li class="nav-item">
+              
+            </li>
+            
+            <li class="nav-item dropdown">
+                
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                 
+                  <% if (user) { %>
+                    <i class="fas user">Hola <%= user.name %> </i>
+                  <% } else { %>
+                    <i class="fas user">Hola Anónimo</i>
+                  <% } %>
+
+              </a>
+              
+                  <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                      aria-labelledby="navbarDropdownMenuLink-333">
+                      <% if (user) { %>
+                        <a class="dropdown-item" href="/profile">Perfil</a>
+                        <% if (user.isServiceProvider()) { %><a class="dropdown-item" href="/myservices">Mis Servicios</a><% } %>
+                        <% if (!user.isServiceProvider()) { %><a class="dropdown-item" href="/editsearchservice/<%= user._id %>">Buscar Servicios</a><% } %>
+                        <% if (!user.isServiceProvider()) { %><a class="dropdown-item" href="/myrequest">Mis Solicitudes</a><% } %>
+                        <a class="dropdown-item" href="/logout">Salir</a>
+                      <% } else { %>
+                        <a class="dropdown-item" href="/signin">Ingresa</a>
+                        <a class="dropdown-item" href="/signup">Registrate</a>
+                      <% } %>
+                  </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!--/.Navbar -->
+
+  <%- body %>
+
+  <!-- LEAFTLET JS -->
+   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+        integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+           crossorigin=""></script>
+  <!-- SOCKET.IO -->
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- CUSTOM JS -->
+  <script src="/js/map.js"></script>
+  
+  
+</body>
+</html>

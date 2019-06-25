@@ -1,4 +1,4 @@
-<%- layout('layouts/main.ejs') %>
+<%- layout('layouts/map.ejs') %>
 
 <div class="container">
 
@@ -28,6 +28,11 @@
                   placeholder="Cuentale a las personas que es lo que haces"
                   ></textarea>
               </div>
+
+              <div class="form-group">
+                  <div id="map-template"></div>
+                </div>
+
               <div class="form-group">
                 <input id="hidden_field" name="userid" type="hidden" value="<%= user._id %>" />
               </div>
@@ -37,6 +42,22 @@
               <div class="form-group">
                   <input id="hidden_field" name="rating" type="hidden" value="0" />
                 </div>
+              <div class="form-group">
+                  <input id="longitude" name="longitude" type="hidden" value="1" />
+                </div>
+                <div class="form-group">
+                    <input id="latitude" name="latitude" type="hidden" value="1" />
+                  </div>
+
+                  <div class="form-group">
+                      <input id="testing" name="test" type="hidden" value="1" />
+                  </div>
+
+                  <script>
+                      document.getElementById("longitude").value="-33.044651";
+                      document.getElementById("latitude").value="-71.614648";
+                  </script>
+
               <button class="btn btn-primary" type="submit">
                 Agregar!
               </button>
@@ -44,6 +65,8 @@
           </div>
         </div>
       </div>
+
+      
   
       <!-- LIST -->
     <div class="col-md-7">
@@ -85,3 +108,4 @@
     </div>
   
   </div>
+

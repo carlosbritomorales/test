@@ -1,3 +1,10 @@
 <%- layout('layouts/main') %>
 
+<% for(var i=0; i < services.length; i++) { %>
+    <div name="test" title="<%= services[i].title %>"></div>
+    <div name="test2" title="<%= services[i].latitude %>"></div>
+    <div name="test3" title="<%= services[i].longitude %>"></div>
+    <div name="test4" title="<%= services[i].username %>"></div>
+<% } %>
+
 <div id="map-template"></div>
