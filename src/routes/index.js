@@ -12,7 +12,7 @@ router.get('/', async(req, res) => {
   const services = await Service.find();
   res.render('index',{
     services
-});
+  });
 });
 
 router.get('/services', async(req, res) => {

@@ -18,9 +18,14 @@ var marker = L.marker([40.5, 30.5]); // kiev, ukraine
 marker.bindPopup('Hello There!');
 map.addLayer(marker);
 
-map.on('click', function(e) { document.getElementById("longitude").value=e.latlng.lat; document.getElementById("latitude").value=e.latlng.lng; });
-
-
+map.on('click', function(e) { 
+  map.removeLayer(marker);
+  marker = L.marker([e.latlng.lat, e.latlng.lng]); 
+  marker.bindPopup('¿Aquí trabajas?'); 
+  map.addLayer(marker); 
+  document.getElementById("longitude").value=e.latlng.lat; 
+  document.getElementById("latitude").value=e.latlng.lng; 
+});
 
 // Geolocation
 map.locate({enableHighAccuracy: true})
