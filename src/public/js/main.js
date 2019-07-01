@@ -78,7 +78,7 @@ for(var i=0; i<services.length; i++){
   map.addLayer(marker)
 }
 
-Geolocation
+/*Geolocation
 map.locate({enableHighAccuracy: true})
 map.on('locationfound', (e) => {
   const coords = [e.latlng.lat, e.latlng.lng];
@@ -86,7 +86,7 @@ map.on('locationfound', (e) => {
   newMarker.bindPopup('Estás justo aquí!');
   map.addLayer(newMarker);
   socket.emit('userCoordinates', e.latlng);
-});
+});*/
 
 // socket new User connected
 socket.on('newUserCoordinates', (coords) => {
