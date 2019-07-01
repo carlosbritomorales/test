@@ -20,6 +20,18 @@ var redIcon = L.icon({
 });
 
 // Custom icon
+var greenIcon = L.icon({
+  iconUrl: 'https://i.ibb.co/MgVZhzZ/m3.png',
+  //shadowUrl: 'leaf-shadow.png',
+
+  iconSize:     [38, 38], // size of the icon
+  //shadowSize:   [50, 64], // size of the shadow
+  iconAnchor:   [22, 38], // point of the icon which will correspond to marker's location
+  shadowAnchor: [4, 62],  // the same for the shadow
+  popupAnchor:  [-3, -20] // point from which the popup should open relative to the iconAnchor
+});
+
+// Custom icon
 var blueIcon = L.icon({
   iconUrl: 'https://i.ibb.co/4jLM99p/m2.png',
   //shadowUrl: 'leaf-shadow.png',
@@ -81,13 +93,7 @@ map.on('locationfound', (e) => {
 // socket new User connected
 socket.on('newUserCoordinates', (coords) => {
   console.log(coords);
-  const userIcon = L.icon({
-    iconUrl: '/img/icon2.png',
-    iconSize: [38, 42],
-  })
-  const newUserMarker = L.marker([coords.lat, coords.lng], {
-    icon: userIcon 
-  });
+  var newUserMarker = L.marker([coords.lat, coords.lng], {icon: greenIcon});
   newUserMarker.bindPopup('New User!');
   map.addLayer(newUserMarker);
 }); 
