@@ -6,6 +6,34 @@ var user=document.getElementsByClassName("fas user");
 
 var map = L.map('map-template');
 
+if(navigator.geolocation)
+{
+  var browserLat;
+  var browserLong;  
+  
+  map.locate({enableHighAccuracy: true});
+  
+  navigator.geolocation.getCurrentPosition(function(position) {
+  
+      browserLat =  position.coords.latitude;
+      browserLong = position.coords.longitude;
+   
+      marker_actual = L.marker([browserLat,browserLong], {icon: redIcon}).addTo(map);
+      marker_actual.bindPopup('<b>'+user[0].title+'</b>'+', tu estás aquí').openPopup();
+      map.setView([browserLat,browserLong], 18);  
+      
+      console.log(browserLat);
+      console.log(browserLong);
+  }, function(err) {
+      console.error(err);
+  });
+  
+}
+else
+{
+  L.map('map-template').setView([51.5, -0.09],18);
+}
+
 //navigator.geolocation.getCurrentPosition(onSuccessGeolocating, onErrorGeolocating, options);
 
 var redIcon = L.icon({
@@ -19,25 +47,6 @@ var redIcon = L.icon({
   popupAnchor:  [-3, -20] // point from which the popup should open relative to the iconAnchor
 });
 
-var browserLat;
-var browserLong;  
-
-map.locate({enableHighAccuracy: true});
-
-navigator.geolocation.getCurrentPosition(function(position) {
-
-    browserLat =  position.coords.latitude;
-    browserLong = position.coords.longitude;
- 
-    var marker_actual = L.marker([browserLat,browserLong], {icon: redIcon}).addTo(map);
-    marker_actual.bindPopup('<b>'+user[0].title+'</b>'+', tu estás aquí').openPopup();
-    map.setView([browserLat,browserLong], 18);  
-    
-    console.log(browserLat);
-    console.log(browserLong);
-}, function(err) {
-    console.error(err);
-});
 
 const tileURL = 'https://b.tile.openstreetmap.org/{z}/{x}/{y}.png' 
 const tileURL2 = 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png';
