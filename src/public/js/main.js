@@ -6,6 +6,8 @@ var user=document.getElementsByClassName("fas user");
 
 var map = L.map('map-template');
 
+//navigator.geolocation.getCurrentPosition(onSuccessGeolocating, onErrorGeolocating, options);
+
 var redIcon = L.icon({
   iconUrl: 'https://i.ibb.co/7rHDnDj/m1.png',
   //shadowUrl: 'leaf-shadow.png',
@@ -20,7 +22,10 @@ var redIcon = L.icon({
 var browserLat;
 var browserLong;  
 
+map.locate({enableHighAccuracy: true});
+
 navigator.geolocation.getCurrentPosition(function(position) {
+
     browserLat =  position.coords.latitude;
     browserLong = position.coords.longitude;
  
