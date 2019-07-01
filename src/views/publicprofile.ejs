@@ -1,0 +1,24 @@
+<%- layout('layouts/main.ejs') %>
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card mt-2 text-center">
+          <div class="card-header"><h3>Perfil de Usuario</h3></div>
+            <div class="card-body">
+              <p class="card-text"><ul>
+
+                    <% for(var i=0,j=1; i < users.length; i++) { %>
+                        <% if (user.name == users[i].userid) { %>          
+                            <li>Nombre de Usuario: <%= users[i].name %></li>
+                            <li>Edad: <%= users[i].birthdate %></li>
+                            <li>Email: <%= users[i].email %></li>
+                            <li>Id: <%= users[i]._id %></li>
+                            <% } %>
+                      <% } %>
+
+
+            </ul></p>
+            </div>
+        </div>
+    </div>
+  </div>

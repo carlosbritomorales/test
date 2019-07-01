@@ -24,6 +24,26 @@ router.get('/services', async(req, res) => {
   });
 });
 
+router.get('/publicprofile', async(req, res) => {
+  const services = Service.find();
+  const users = await User.find();
+  //res.render('profile');
+  res.render('publicprofile',{
+      services,
+      users,
+  });
+});
+
+router.get('/publicprofile/:id', async(req, res) => {
+  const services = Service.find();
+  const users = await User.find();
+  //res.render('profile');
+  res.render('publicprofile',{
+      services,
+      users,
+  });
+});
+
 router.get('/profile', (req, res) => {
   const services = Service.find();
   //res.render('profile');

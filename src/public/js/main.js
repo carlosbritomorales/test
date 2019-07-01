@@ -74,24 +74,24 @@ map.addLayer(marker);
 
 for(var i=0; i<services.length; i++){
   marker = L.marker([services3[i].title,services2[i].title], {icon: blueIcon}); // kiev, ukraine
-  marker.bindPopup('<b>'+services[i].title+'</b>'+"<br>de "+'<i>'+services4[i].title+'</i>');
+  marker.bindPopup('<b>'+services[i].title+'</b>'+"<br>de "+'<i>'+ '<a href="/publicprofile">'+services4[i].title+'</a></i>');
   map.addLayer(marker)
 }
 
-// Geolocation
-//map.locate({enableHighAccuracy: true})
-//map.on('locationfound', (e) => {
-  //const coords = [e.latlng.lat, e.latlng.lng];
-  //const newMarker = L.marker(coords,{icon: redIcon}).addTo(map);
-  //newMarker.bindPopup('Estás justo aquí!');
-  //map.addLayer(newMarker);
-  //socket.emit('userCoordinates', e.latlng);
-//});
+Geolocation
+map.locate({enableHighAccuracy: true})
+map.on('locationfound', (e) => {
+  const coords = [e.latlng.lat, e.latlng.lng];
+  const newMarker = L.marker(coords,{icon: redIcon}).addTo(map);
+  newMarker.bindPopup('Estás justo aquí!');
+  map.addLayer(newMarker);
+  socket.emit('userCoordinates', e.latlng);
+});
 
 // socket new User connected
 socket.on('newUserCoordinates', (coords) => {
   console.log(coords);
-  var newUserMarker = L.marker([coords.lat, coords.lng], {icon: greenIcon });
+  const newUserMarker = L.marker([coords.lat, coords.lng], {icon: greenIcon });
   newUserMarker.bindPopup(user[0].title);
   map.addLayer(newUserMarker);
 }); 
