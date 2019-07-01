@@ -44,7 +44,6 @@
           
           <ul class="navbar-nav ml-auto nav-flex-icons">
             
-           
             <li class="nav-item">
               
             </li>
@@ -55,9 +54,9 @@
                   aria-haspopup="true" aria-expanded="false">
                  
                   <% if (user) { %>
-                    <i class="fas user">Hola <%= user.name %> </i>
+                    <i class="fas user" title="<%= user.name %>">Hola <%= user.name %> </i>
                   <% } else { %>
-                    <i class="fas user">Hola Anónimo</i>
+                    <i class="fas user" title="Anónimo">Hola Anónimo</i>
                   <% } %>
 
               </a>

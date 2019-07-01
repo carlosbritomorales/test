@@ -2,6 +2,7 @@ var services=document.getElementsByName("test");
 var services2=document.getElementsByName("test2");
 var services3=document.getElementsByName("test3");
 var services4=document.getElementsByName("test4");
+var user=document.getElementsByClassName("fas user");
 
 var map = L.map('map-template');
 
@@ -23,8 +24,8 @@ navigator.geolocation.getCurrentPosition(function(position) {
     browserLat =  position.coords.latitude;
     browserLong = position.coords.longitude;
  
-    marker_actual = L.marker([browserLat,browserLong], {icon: redIcon}).addTo(map);
-    marker_actual.bindPopup('<b>Hola </b><br>Tu estas aqui').openPopup();
+    var marker_actual = L.marker([browserLat,browserLong], {icon: redIcon}).addTo(map);
+    marker_actual.bindPopup('<b>'+user[0].title+'</b>'+', tu estás aquí').openPopup();
     map.setView([browserLat,browserLong], 18);  
     
     console.log(browserLat);
@@ -73,7 +74,7 @@ map.addLayer(marker);
 
 for(var i=0; i<services.length; i++){
   marker = L.marker([services3[i].title,services2[i].title], {icon: blueIcon}); // kiev, ukraine
-  marker.bindPopup(services[i].title+"\nde\n"+services4[i].title);
+  marker.bindPopup('<b>'+services[i].title+'</b>'+"<br>de "+'<i>'+services4[i].title+'</i>');
   map.addLayer(marker)
 }
 
@@ -91,7 +92,7 @@ for(var i=0; i<services.length; i++){
 socket.on('newUserCoordinates', (coords) => {
   console.log(coords);
   var newUserMarker = L.marker([coords.lat, coords.lng], {icon: greenIcon });
-  newUserMarker.bindPopup('New User!');
+  newUserMarker.bindPopup(user[0].title);
   map.addLayer(newUserMarker);
 }); 
 
