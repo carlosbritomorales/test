@@ -81,14 +81,14 @@ map.on('click', function(e) {
 });
 
 // Geolocation
-map.locate({enableHighAccuracy: true})
-map.on('locationfound', (e) => {
-  const coords = [e.latlng.lat, e.latlng.lng];
-  const newMarker = L.marker(coords);
+//map.locate({enableHighAccuracy: true})
+//map.on('locationfound', (e) => {
+//  const coords = [e.latlng.lat, e.latlng.lng];
+//  const newMarker = L.marker(coords);
   //newMarker.bindPopup('Estás justo aquí!');
   //map.addLayer(newMarker);
-  socket.emit('userCoordinates', e.latlng);
-});
+//  socket.emit('userCoordinates', e.latlng);
+//});
 
 // socket new User connected
 socket.on('newUserCoordinates', (coords) => {

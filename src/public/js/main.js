@@ -78,14 +78,14 @@ for(var i=0; i<services.length; i++){
 }
 
 // Geolocation
-map.locate({enableHighAccuracy: true})
-map.on('locationfound', (e) => {
-  const coords = [e.latlng.lat, e.latlng.lng];
-  const newMarker = L.marker(coords,{icon: redIcon}).addTo(map);
+//map.locate({enableHighAccuracy: true})
+//map.on('locationfound', (e) => {
+  //const coords = [e.latlng.lat, e.latlng.lng];
+  //const newMarker = L.marker(coords,{icon: redIcon}).addTo(map);
   //newMarker.bindPopup('Estás justo aquí!');
   //map.addLayer(newMarker);
-  socket.emit('userCoordinates', e.latlng);
-});
+  //socket.emit('userCoordinates', e.latlng);
+//});
 
 // socket new User connected
 socket.on('newUserCoordinates', (coords) => {
