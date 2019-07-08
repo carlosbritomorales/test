@@ -25,24 +25,59 @@ router.get('/services', async(req, res) => {
 });
 
 router.get('/publicprofile', async(req, res) => {
-  const services = Service.find();
+  
   const users = await User.find();
-  //res.render('profile');
+  const services = await Service.find();
+  const request = await Request.find();
+
+  const moment = require('moment');
+
   res.render('publicprofile',{
-      services,
+      request,
       users,
+      services,
+      moment,
   });
+
 });
 
-router.get('/publicprofile/:id', async(req, res) => {
-  const services = Service.find();
+router.get('/publicprofile/:id', async (req, res, next) => {
+  const service = await Service.findById(req.params.id);
+  const services = await Service.find();
+  const request = await Request.find();
   const users = await User.find();
-  //res.render('profile');
-  res.render('publicprofile',{
-      services,
-      users,
-  });
+  const moment = require('moment');
+  console.log(service)
+  res.render('publicprofile', { users, request, service, services, moment: moment });
 });
+
+router.get('/publicservice', async(req, res) => {
+  
+  const users = await User.find();
+  const services = await Service.find();
+  const request = await Request.find();
+
+  const moment = require('moment');
+
+  res.render('publicservice',{
+      request,
+      users,
+      services,
+      moment,
+  });
+
+});
+
+router.get('/publicservice/:id', async (req, res, next) => {
+  const service = await Service.findById(req.params.id);
+  const services = await Service.find();
+  const request = await Request.find();
+  const users = await User.find();
+  const moment = require('moment');
+  console.log(service)
+  res.render('publicservice', { users, request, service, services, moment: moment });
+});
+//
 
 router.get('/profile', (req, res) => {
   const services = Service.find();

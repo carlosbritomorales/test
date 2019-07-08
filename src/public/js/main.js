@@ -2,6 +2,7 @@ var services=document.getElementsByName("test");
 var services2=document.getElementsByName("test2");
 var services3=document.getElementsByName("test3");
 var services4=document.getElementsByName("test4");
+var services5=document.getElementsByName("test5");
 var user=document.getElementsByClassName("fas user");
 
 var map = L.map('map-template');
@@ -88,7 +89,7 @@ map.addLayer(marker);
 
 for(var i=0; i<services.length; i++){
   marker = L.marker([services3[i].title,services2[i].title], {icon: blueIcon}); // kiev, ukraine
-  marker.bindPopup('<b>'+services[i].title+'</b>'+"<br>de "+'<i>'+ '<a href="/publicprofile">'+services4[i].title+'</a></i>');
+  marker.bindPopup('<b><a href="/publicservice/'+services5[i].title+'">'+services[i].title+'</a></b>'+"<br>de "+'<i>'+ '<a href="/publicprofile/'+services5[i].title+'">'+services4[i].title+'</a></i>');
   map.addLayer(marker)
 }
 
