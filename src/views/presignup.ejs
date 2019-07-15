@@ -1,0 +1,17 @@
+<%- layout('layouts/main.ejs') %>
+
+<link rel="stylesheet" href="/css/rutvalidate.css">
+
+<div class="col-md-4 offset-md-4">
+        <div class="card mt-2 text-center">
+          <div class="card-header"><h3>¡A tener en cuenta!</h3></div>
+            <div class="card-body text-justify">
+                <p>Con el fin de brindar un servicio seguro y generar un clima de confianza entre todos los usuarios de Searchvices, <b>solicitaremos tu RUT</b>. De esta manera podremos dar una pronta solución a los conflictos que puedan producirse en la interacción con la aplicación y los demás usuarios de ella.</p>
+                <input id="boxok" type="checkbox">Estoy de acuerdo con lo anterior
+                <form action="/rutvalidate" method="GET"><button id="btnvalida" type="submit" class="btn btn-secondary btn-block mt-4 btn-dark">Siguiente</button></form>
+            </div>
+        </div>
+    </div>
+  
+<script src="/js/presignup.js"></script>
+  

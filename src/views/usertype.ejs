@@ -1,0 +1,21 @@
+<%- layout('layouts/main.ejs') %>
+
+<link rel="stylesheet" href="/css/rutvalidate.css">
+
+<div class="col-md-4 offset-md-4">
+        <div class="card mt-2 text-center">
+          <div class="card-header"><h3>Lo primero</h3></div>
+            <div class="card-body text-justify">
+                <p>Gracias por llegar hasta acá. Estamos muy contentos de que estés a tan solo unos pasos de ser parte de nuestra comunidad.</p>
+                <p>Te pedimos que selecciones el uso que le darás a tu cuenta de Searchvices</p>
+                <input id="client" type="checkbox">Solicitaré Servicios
+                <input id="provider" type="checkbox">Ofreceré Servicios
+                <form action="/presignup" method="GET">
+                    <button id="btnvalida" type="submit"  class="btn btn-secondary btn-block mt-4 btn-dark">Siguiente</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  
+<script src="/js/usertype.js"></script>
+  

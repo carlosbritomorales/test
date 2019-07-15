@@ -1,0 +1,47 @@
+#banner{
+    height: 200px;
+    width: 200px;
+}
+
+#bannerimg{
+    height: 20px;
+    width: 20px;
+}
+
+#acard{
+    height: 100%;
+    width: 100%;
+}
+
+#acard-i{
+    width: 200px;
+}
+
+
+#acard-b{
+    height: 400px;
+    width: 100%;
+}
+
+#pcard-c{
+    
+}
+
+#pcard{
+    text-align: justify;
+    margin: 10px;
+    border-style: solid;
+    border-color: black;
+}
+
+#pcard-b{
+    text-align: left;
+}
+
+#pcard-h{
+
+}
+
+#pcard-p{
+
+}

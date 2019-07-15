@@ -6,10 +6,10 @@
   
     <% for(var i=0; i < services.length; i++) { %>
       <div style="padding: 5px; display:inline-block ">
-      <div class="card text-white bg-secondary mb-3" style="max-width: 20em">
-          <div class="card-header text-center font-weight-bold bg-dark"><%= services[i].title %></div>
-          <img class="card-img-top" style="max-width: 10rem; max-height: 10rem; display:block; margin:auto;" src="https://images.vexels.com/media/users/3/135118/isolated/preview/676bf0e9f3c16649cd7f426c6dcd755a-flat-user-sign-with-round-background-by-vexels.png" alt="Card image cap">
-          <div class="card-body">
+      <div id="card" class="card text-white mb-3" style="max-width: 20em">
+          <div id="card-h" class="card-header text-center font-weight-bold"><%= services[i].title %></div>
+          <img id="card-i" class="card-img-top" style="max-width: 10rem; max-height: 10rem; display:block; margin:auto;" src="https://images.vexels.com/media/users/3/135118/isolated/preview/676bf0e9f3c16649cd7f426c6dcd755a-flat-user-sign-with-round-background-by-vexels.png" alt="Card image cap">
+          <div id="card-b" class="card-body">
             <p class="card-title text-center bg-dark" style="border-radius: 20px">Prestador: <%= services[i].username %></p>
           <p class="card-title text-center bg-danger" style="border-radius: 5px; padding: 5px;"><% if (services[i].status) { %> <img style="width: 20px; height: 20px;" src="https://i.ibb.co/wYx2XQn/clock.png" alt=""> Disponibilidad Inmediata <% } else { %> Confirmar Disponibilidad <% } %></p>
             <hr><p class="card-text text-justify bg-dark" style="border-radius: 5px; padding: 5px;"><%= services[i].description %></p><hr>

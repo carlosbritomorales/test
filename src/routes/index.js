@@ -15,6 +15,38 @@ router.get('/', async(req, res) => {
   });
 });
 
+router.get('/accountprofile', (req, res, next) => {
+  res.render('accountprofile');
+});
+
+
+router.get('/usertype', (req, res, next) => {
+  res.render('usertype');
+});
+
+router.get('/presignup', (req, res, next) => {
+  res.render('presignup');
+});
+
+router.get('/rutvalidate', (req, res, next) => {
+  res.render('rutvalidate');
+});
+
+router.post('/rutvalidate', (req, res, next) => {
+  if(req.body.rut != ""){
+    res.redirect('signup');
+  }else{
+    res.redirect('rutvalidate');
+  }
+});
+
+router.get('/chat', async(req, res) => {
+  const services = await Service.find();
+  res.render('chat',{
+    services
+  });
+});
+
 router.get('/services', async(req, res) => {
   
   const services = await Service.find();

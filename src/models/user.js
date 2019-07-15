@@ -33,5 +33,4 @@ userSchema.methods.isServiceProvider = function(){
   return (this.usertype === "services-on");
 };
 
-
 module.exports = mongoose.model('users', userSchema);

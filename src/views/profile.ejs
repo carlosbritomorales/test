@@ -1,27 +1,36 @@
 <%- layout('layouts/main.ejs') %>
 
-<div class="row">
-    <div class="col-md-4 offset-md-4">
-        <div class="card mt-2 text-center">
-          <div class="card-header"><h3>Perfil de Usuario</h3></div>
-            <div class="card-body">
-              <p class="card-text"><ul>
-                <li>Nombre de Usuario: <%= user.name %></li>
-                <li>Edad: <%= user.birthdate %></li>
-                <li>Email: <%= user.email %></li>
-                <li>Id: <%= user._id %></li>
-                <li>Service: <%= services.length %></li>
-               
-                
-                <% for(var i=0; i < user.services.length; i++) { %>
-                  <li>Servicio: <%= user.services[i].name %></li>
-                  <%= i + 1%>
+<link rel="stylesheet" href="/css/profile.css">
 
-                  
-                <% } %>
 
-            </ul></p>
-            </div>
-        </div>
+<div class="card text-center">
+    <div class="card-header"><h3>Perfil de Usuario</h3><hr>
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" href="/profile">Información Básica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/accountprofile">Mi Cuenta</a>
+        </li>
+        
+      </ul>
     </div>
+
+    <div  class="card-body">
+        <div class="card bg-dark text-white">
+            <img id="banner" src="/img/nonprofile.png" class="card-img text-align-right" alt="...">
+            <div  class="card-img-overlay">
+                <h5 class="card-title">Información Básica</h5>
+                <b>Nombre de Usuario:</b>  <%= user.name %><br>
+                <b>Edad:</b> <%= user.birthdate %><br>
+                <b>Email:</b> <%= user.email %><br>
+                <b>Id:</b> <%= user._id %><br>
+                <b>Service:</b> <%= services.length %><br>
+            </div>
+          </div>
+      
+    </div>
+
+    
+
   </div>

@@ -26,61 +26,61 @@
 <body>
 
  <!--Navbar -->
-    <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color bg-dark">
-      <img src="https://i.ibb.co/bvzj49b/svlogo.png" weight="50px" height="50px">
-      <a class="navbar-brand" href="/" >&nbsp;&nbsp;&nbsp;Searchvices</a>
+ <nav id="nav" class="mb-1 navbar navbar-expand-lg navbar-dark default-color ">
+  <img src="https://i.ibb.co/TwjVyNv/l.png" weight="30px" height="30px">
+  
+  
+    
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+      aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       
+      <ul class="navbar-nav mr-auto"></ul>
+      <a id="menu-item" class="nav-item" href="/" >Inicio</a>
+      <a id="menu-item" class="nav-item" href="/services" >Servicios</a>
+      <a id="menu-item" class="nav-item" href="/services" >Contacto</a>
+      </ul>
+      
+      <ul class="navbar-nav ml-auto nav-flex-icons">
         
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-          aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
+        <li class="nav-item">
+          
+        </li>
+        
+        <li class="nav-item dropdown">
+            
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+             
+              <% if (user) { %>
+                <i class="fas user" title="<%= user.name %>">Hola <%= user.name %> </i>
+              <% } else { %>
+                <i class="fas user" title="Anónimo">Hola Anónimo</i>
+              <% } %>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+          </a>
           
-          <ul class="navbar-nav mr-auto">
-          <a class="nav-item" href="/services" ><br>Servicios</a>
-          </ul>
-          
-          <ul class="navbar-nav ml-auto nav-flex-icons">
-            
-           
-            <li class="nav-item">
-              
-            </li>
-            
-            <li class="nav-item dropdown">
-                
-              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                 
+              <div id="dropdown" class="dropdown-menu dropdown-menu-right dropdown-default"
+                  aria-labelledby="navbarDropdownMenuLink-333">
                   <% if (user) { %>
-                    <i class="fas user">Hola <%= user.name %> </i>
+                    <a class="dropdown-item" href="/profile">Perfil</a>
+                    <% if (user.isServiceProvider()) { %><a class="dropdown-item" href="/myservices">Mis Servicios</a><% } %>
+                    <% if (!user.isServiceProvider()) { %><a class="dropdown-item" href="/editsearchservice/<%= user._id %>">Buscar Servicios</a><% } %>
+                    <% if (!user.isServiceProvider()) { %><a class="dropdown-item" href="/myrequest">Mis Solicitudes</a><% } %>
+                    <a class="dropdown-item" href="/logout">Salir</a>
                   <% } else { %>
-                    <i class="fas user">Hola Anónimo</i>
+                    <a class="dropdown-item" href="/signin">Ingresa</a>
+                    <a class="dropdown-item" href="/usertype">Registrate</a>
                   <% } %>
-
-              </a>
-              
-                  <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                      aria-labelledby="navbarDropdownMenuLink-333">
-                      <% if (user) { %>
-                        <a class="dropdown-item" href="/profile">Perfil</a>
-                        <% if (user.isServiceProvider()) { %><a class="dropdown-item" href="/myservices">Mis Servicios</a><% } %>
-                        <% if (!user.isServiceProvider()) { %><a class="dropdown-item" href="/editsearchservice/<%= user._id %>">Buscar Servicios</a><% } %>
-                        <% if (!user.isServiceProvider()) { %><a class="dropdown-item" href="/myrequest">Mis Solicitudes</a><% } %>
-                        <a class="dropdown-item" href="/logout">Salir</a>
-                      <% } else { %>
-                        <a class="dropdown-item" href="/signin">Ingresa</a>
-                        <a class="dropdown-item" href="/signup">Registrate</a>
-                      <% } %>
-                  </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <!--/.Navbar -->
-
+              </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--/.Navbar -->
   <%- body %>
 
   <!-- LEAFTLET JS -->

@@ -1,119 +1,143 @@
 <%- layout('layouts/map.ejs') %>
 
-<div class="container">
+<div class="card text-center">
+  <div class="card-header"><h3>Panel de Servicios</h3><hr>
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="/myservices">Agregar Servicio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/myserviceshistory">Mi Historial</a>
+      </li>
+      
+    </ul>
+  </div>
 
-    <div class="row">
-      <!--FORM-->
-      <div class="col-md-5">
-        <div class="card">
-            <div class="card-header"><h3>Agrega un Servicio</h3></div>
-          <div class="card-body">
-            <form action="/add" method="post">
-              <div class="form-group">
-                <input class="form-control" type="text" name="title" placeholder="Dinos el nombre de tu servicio">
-              </div>
-              <div class="form-group">
-                  <select name="category">
-                      <option value="Artesanía‎"selected>Artesanía‎</option>
-                      <option value="Carpintería‎‎">Carpintería‎</option>
-                      <option value="Computación">Computación</option> 
-                      <option value="Construcción">Construcción</option>
-                      <option value="Costura‎‎">Costura‎</option>
-                      <option value="Educación">Educación</option>
-                      <option value="Estética">Estética</option> 
-                      <option value="Gastronomía‎">Gastronomía‎‎</option>
-                      <option value="Jardinería‎">Jardinería‎</option>
-                      <option value="Luthería">Luthería</option>
-                      <option value="Peluquería‎">Peluquería‎</option>
-                      <option value="Mascotas">Mascotas</option>
-                      <option value="Sastrería‎">Sastrería</option>
-                      <option value="Zapatería‎">Zapatería‎</option>
-                  </select> Selecciona la categoría de tu servicio
-              </div>
-              <div class="form-group">
-                <textarea class="form-control" name="description" cols="80"
-                  placeholder="Cuentale a las personas que es lo que haces"
-                  ></textarea>
-              </div>
+  <div  class="card-body">
+      
+    
 
-              <div class="form-group">
-                  <div>Marca en el mapa el lugar donde podrán encontrarte tus clientes.</div><br>
-                  <div id="map-template"></div>
-                </div>
-
-              <div class="form-group">
-                <input id="hidden_field" name="userid" type="hidden" value="<%= user._id %>" />
-              </div>
-              <div class="form-group">
-                <input id="hidden_field" name="username" type="hidden" value="<%= user.name %>" />
-              </div>
-              <div class="form-group">
-                  <input id="hidden_field" name="rating" type="hidden" value="0" />
-                </div>
-              <div class="form-group">
-                  <input id="longitude" name="longitude" type="hidden" value="1" />
+      <div class="row">
+        <!--FORM-->
+        <div class="col-md-5">
+          <div class="card">
+              <div class="card-header"><h3>Agrega un Servicio</h3></div>
+            <div class="card-body">
+              <form action="/add" method="post">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="title" placeholder="Dinos el nombre de tu servicio">
                 </div>
                 <div class="form-group">
-                    <input id="latitude" name="latitude" type="hidden" value="1" />
+                    <select name="category">
+                        <option value="Artesanía‎"selected>Artesanía‎</option>
+                        <option value="Carpintería‎‎">Carpintería‎</option>
+                        <option value="Computación">Computación</option> 
+                        <option value="Construcción">Construcción</option>
+                        <option value="Costura‎‎">Costura‎</option>
+                        <option value="Educación">Educación</option>
+                        <option value="Estética">Estética</option> 
+                        <option value="Gastronomía‎">Gastronomía‎‎</option>
+                        <option value="Jardinería‎">Jardinería‎</option>
+                        <option value="Luthería">Luthería</option>
+                        <option value="Peluquería‎">Peluquería‎</option>
+                        <option value="Mascotas">Mascotas</option>
+                        <option value="Sastrería‎">Sastrería</option>
+                        <option value="Zapatería‎">Zapatería‎</option>
+                    </select> Selecciona la categoría de tu servicio
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" name="description" cols="80"
+                    placeholder="Cuentale a las personas que es lo que haces"
+                    ></textarea>
+                </div>
+  
+                <div class="form-group">
+                    <div>Marca en el mapa el lugar donde podrán encontrarte tus clientes.</div><br>
+                    <div id="map-template"></div>
                   </div>
-
+  
+                <div class="form-group">
+                  <input id="hidden_field" name="userid" type="hidden" value="<%= user._id %>" />
+                </div>
+                <div class="form-group">
+                  <input id="hidden_field" name="username" type="hidden" value="<%= user.name %>" />
+                </div>
+                <div class="form-group">
+                    <input id="hidden_field" name="rating" type="hidden" value="0" />
+                  </div>
+                <div class="form-group">
+                    <input id="longitude" name="longitude" type="hidden" value="1" />
+                  </div>
                   <div class="form-group">
-                      <input id="testing" name="test" type="hidden" value="1" />
-                  </div>
-
-                  <script>
-                      document.getElementById("longitude").value="-33.044651";
-                      document.getElementById("latitude").value="-71.614648";
-                  </script>
-
-              <button class="btn btn-primary" type="submit">
-                Agregar!
-              </button>
-            </form>
+                      <input id="latitude" name="latitude" type="hidden" value="1" />
+                    </div>
+  
+                    <div class="form-group">
+                        <input id="testing" name="test" type="hidden" value="1" />
+                    </div>
+  
+                    <script>
+                        document.getElementById("longitude").value="-33.044651";
+                        document.getElementById("latitude").value="-71.614648";
+                    </script>
+  
+                <button class="btn btn-primary" type="submit">
+                  Agregar!
+                </button>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-
-      
   
-      <!-- LIST -->
-    <div class="col-md-7">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>N°</th>
-              <th>Titulo</th>
-              <th>Descripción</th>
-              <th>Operaciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% for(var i=0,j=1; i < services.length; i++) { %>
-              <% if (user._id == services[i].userid) { %>              
+        
+    
+        <!-- LIST -->
+      <div class="col-md-7">
+          <table class="table table-bordered table-hover">
+            <thead>
               <tr>
-                <td><%= j++%></td>
-                <td><strong><%= services[i].title %></strong></td>
-                <td><%= services[i].description %></td>
-                <td>
-                  <a
-                    class="<%= services[i].status ? 'btn btn-success' : 'btn btn-dark'%>"
-                    href="/turn/<%= services[i]._id %>">Disponible</a>
-                  <a href="/delete/<%= services[i]._id %>"
-                    class="btn btn-danger">
-                    Borrar
-                  </a>
-                  <a href="/editService/<%= services[i]._id %>" class="btn btn-info">
-                    Editar
-                  </a>
-                </td>                
+                <th>N°</th>
+                <th>Titulo</th>
+                <th>Descripción</th>
+                <th>Operaciones</th>
               </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0,j=1; i < services.length; i++) { %>
+                <% if (user._id == services[i].userid) { %>              
+                <tr>
+                  <td><%= j++%></td>
+                  <td><strong><%= services[i].title %></strong></td>
+                  <td><%= services[i].description %></td>
+                  <td>
+                    <a
+                      class="<%= services[i].status ? 'btn btn-success' : 'btn btn-dark'%>"
+                      href="/turn/<%= services[i]._id %>">Disponible</a>
+                    <a href="/delete/<%= services[i]._id %>"
+                      class="btn btn-danger">
+                      Borrar
+                    </a>
+                    <a href="/editService/<%= services[i]._id %>" class="btn btn-info">
+                      Editar
+                    </a>
+                  </td>                
+                </tr>
+                <% } %>
               <% } %>
-            <% } %>
-          </tbody>
-        </table>
-  
+            </tbody>
+          </table>
+    
+        </div>
       </div>
-    </div>
+    
+    
   
+  
+    
   </div>
+
+  
+
+</div>
+
 

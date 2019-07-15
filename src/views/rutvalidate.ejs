@@ -1,0 +1,30 @@
+<%- layout('layouts/main.ejs') %>
+
+<link rel="stylesheet" href="/css/rutvalidate.css">
+
+<content>
+<div id="wrapper" class="col-md-4 offset-md-4">
+        <div class="card mt-2 text-center">
+          <div class="card-header"><h3>Para tu seguridad</h3></div>
+            <div class="card-body ">
+                <form name="myform" action="/signup" method="POST">
+                    <span class="input-group-addon" id="sizing-addon1">Rut</span>
+                    <input type="text" class="form-control" placeholder="Rut a validar, ej: 11111111-1" aria-describedby="sizing-addon1" id="txt_rut">
+                    <button id="btnvalida" type="button" class="btn btn-secondary btn-block mt-4 btn-dark">Valida tu RUT</button>
+                    <button id="btnok" type="submit" class="btn btn-prymary btn-block mt-4 btn-dark">
+                    Listo!
+                  </button>
+                </form>
+                
+            
+            </div>
+            
+          <p class="text-info" id="msgerror"></p>
+
+        </div>
+    </div>
+</content>
+
+<script src="/js/rutvalidate.js"></script>
+
+
