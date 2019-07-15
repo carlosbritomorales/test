@@ -10,13 +10,25 @@ const Request = require('../models/request');
 
 router.get('/', async(req, res) => {
   const services = await Service.find();
-  res.render('index',{
-    services
-  });
+  if(req.isAuthenticated()){
+    res.render('index',{
+      services
+    });
+  }else{
+    res.redirect('services');
+  }
+  
 });
 
+
+
 router.get('/accountprofile', (req, res, next) => {
-  res.render('accountprofile');
+  if(req.isAuthenticated()){
+    res.render('accountprofile')
+  }else{
+    res.render('index');
+  }
+  
 });
 
 
@@ -40,9 +52,9 @@ router.post('/rutvalidate', (req, res, next) => {
   }
 });
 
-router.get('/chat', async(req, res) => {
+router.get('/questionspost', async(req, res) => {
   const services = await Service.find();
-  res.render('chat',{
+  res.render('questionspost',{
     services
   });
 });
@@ -112,11 +124,18 @@ router.get('/publicservice/:id', async (req, res, next) => {
 //
 
 router.get('/profile', (req, res) => {
+  
   const services = Service.find();
-  //res.render('profile');
-  res.render('profile',{
+
+  if(req.isAuthenticated()){
+    res.render('profile',{
       services
   });
+  }else{
+    res.status(401);
+    res.render('index');
+  }
+
 });
 
 router.get('/main', async(req, res) => {
@@ -159,6 +178,17 @@ router.get('/logout', (req, res, next) => {
 });
 
 //Rutas relacionadas con Manejo de Servicios (Agregar, Eliminar y Editar)
+
+
+router.get('/myserviceshistory', (req, res, next) => {
+  if(req.isAuthenticated()){
+    res.render('myserviceshistory')
+  }else{
+    res.render('index');
+  }
+  
+});
+
 router.get('/myservices', async(req, res) => {
   const services = await Service.find();
 

@@ -2,7 +2,7 @@
 
 //window.alert(services[0].title);
     
-var map = L.map('map-template');
+var map = L.map('map-signup');
 
 var browserLat;
 var browserLong;  
