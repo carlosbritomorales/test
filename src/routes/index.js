@@ -7,6 +7,7 @@ const Moment = require('moment');
 const Service = require('../models/services');
 const User = require('../models/user');
 const Request = require('../models/request');
+const Question = require('../models/question');
 
 router.get('/', async(req, res) => {
   const services = await Service.find();
@@ -21,6 +22,129 @@ router.get('/', async(req, res) => {
 });
 
 
+//------------my activity
+
+router.post('/editanswers/:id', async (req, res, next) => {
+  const { id } = req.params;
+  await Question.update({_id: id}, req.body);
+  res.redirect('/answerspanel');
+  });
+
+router.get('/answerspanel', async(req, res) => {
+
+  const users = await User.find();
+  const services = await Service.find();
+  const question = await Question.find();
+
+  var moment = require('moment');
+
+  //exports.myrequest = function(req, res) {
+  
+      res.render('answerspanel', { 
+          moment: moment,
+          users,
+          services,
+          question,
+      });
+  
+  //}
+
+});
+
+router.get('/answerspanel/:id', async (req, res, next) => {
+  const question  = await Question.findById(req.params.id);
+  console.log(question)
+  res.render('answerspanel', { question });
+});
+
+router.post('/answerspanel/:id', async (req, res, next) => {
+const { id } = req.params;
+await Question.update({_id: id}, req.body);
+res.redirect('/answerspanel');
+});
+
+//------------
+
+//Rutas relacionadas con Solicitudes de Servicios
+
+router.get('/panelquestions', async(req, res) => {
+
+  const users = await User.find();
+  const services = await Service.find();
+  const question = await Question.find();
+
+  var moment = require('moment');
+
+  //exports.myrequest = function(req, res) {
+  
+      res.render('panelquestions', { 
+          moment: moment,
+          users,
+          services,
+          question,
+      });
+  
+  //}
+
+});
+
+router.get('/panelquestions/:id', async (req, res, next) => {
+  const question  = await Question.findById(req.params.id);
+  console.log(question)
+  res.render('panelquestions', { question });
+});
+
+router.post('/panelquestions/:id', async (req, res, next) => {
+const { id } = req.params;
+await Question.update({_id: id}, req.body);
+res.redirect('/panelquestions');
+});
+
+router.post('/addquestion', async(req, res) => {
+  const service = await Service.findById(req.params.id);
+  const question = new Question(req.body);
+  await question.save();
+  res.redirect('/panelquestions');
+});
+
+
+router.get('/questionspost', async(req, res) => {
+  
+  const users = await User.find();
+  const services = await Service.find();
+  const question = await Question.find();
+
+  const moment = require('moment');
+
+  res.render('questionspost',{
+      question,
+      users,
+      services,
+      moment,
+  });
+
+});
+
+router.get('/questionspost/:id', async (req, res, next) => {
+  const service = await Service.findById(req.params.id);
+  const services = await Service.find();
+  const question = await Question.find();
+  const moment = require('moment');
+  console.log(service)
+  res.render('questionspost', { question, service, services, moment: moment });
+});
+
+router.post('/questionspost/:id', async (req, res, next) => {
+  const { id } = req.params;
+  const question = await Question.find();
+  const services = await Service.find();
+  await Service.update({_id: id}, req.body);
+  res.render('questionspost', { question, services, moment: moment });
+  //res.redirect('/requestservice');
+});
+//
+
+//------------
 
 router.get('/accountprofile', (req, res, next) => {
   if(req.isAuthenticated()){

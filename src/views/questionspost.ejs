@@ -1,3 +1,74 @@
 <%- layout('layouts/main.ejs') %>
 
-wena los kabros acá pueden dejar sus dudas sipom
+
+<div class="col-md-4 offset-md-4">
+    <div class="card mt-2 text-center">
+      <div class="card-header"><h3>¿Tienes dudas?</h3></div>
+        <div class="card-body">
+            <form action="/addquestion" method="post">
+              <div class="form-group">
+                <textarea class="form-control" name="question" cols="80"
+                    placeholder="Deja a <%= service.username %> tu pregunta para que pueda ayudarte con el servicio de <%= service.title %> "
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <input id="hidden_field" name="title" type="hidden" value="<%= service.title %>" />
+              </div>
+              <div class="form-group">
+                <input id="hidden_field" name="userid" type="hidden" value="<%= user._id %>" />
+              </div>
+              <div class="form-group">
+                <input id="hidden_field" name="serviceid" type="hidden" value="<%= service._id %>" />
+              </div>
+              <div class="form-group">
+                <input id="hidden_field" name="questuserid" type="hidden" value="<%= service.userid %>" />
+              </div>
+              <div class="form-group">
+                  <input id="hidden_field" name="providername" type="hidden" value="<%= service.username %>" />
+                </div>
+                <div class="form-group">
+                    <input id="hidden_field" name="requestdate" type="hidden" value="<%= moment().format('D [de] MMMM [del] YYYY, h:mm:ss A') %>" />
+                  </div>
+                  
+                  <p class="text-justify"><%= user.name %> escribe tu duda, y será resuelta a la brevedad ¡Gracias!</p>
+                  
+                  
+              <button class="btn btn-primary conntet-alingn-center" type="submit">¡Confirmar!</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- LIST -->
+<div class="col-md-auto">
+  <div class="card-header text-center" ><h3>Tal vez te podría servir...</h3></div>
+      <table class="table table-bordered table-hover">
+        <thead>
+              <tr>
+                <th>N°</th>
+                <th>Pregunta</th>
+                <th>respuesta</th>
+              </tr>
+            </thead>  
+        <tbody>
+          <% for(var i=0,j=1; i < question.length; i++) { %>
+              <% if (service._id == question[i].serviceid) { %>                
+              <tr>
+                  <td><%= j++ %></td>
+                  <td><strong><%= question[i].question %></strong></td>     
+                  <td><strong><%= question[i].answer %></strong></td> 
+              </tr>
+          <% } %>
+          <% } %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+
+
+      
+        
+    
