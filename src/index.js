@@ -4,6 +4,9 @@ const socketIO = require('socket.io');
 const path = require('path');
 const engine = require('ejs-mate');
 
+const multer = require('multer');
+const uuid = require('uuid/v4');
+
 const morgan = require('morgan');
 const passport = require('passport');
 const session = require('express-session');

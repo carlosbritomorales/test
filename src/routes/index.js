@@ -1,3 +1,7 @@
+const fs = require('fs');
+const multer = require('multer');
+
+
 const router = require('express').Router();
 const path = require('path');
 
@@ -8,6 +12,38 @@ const Service = require('../models/services');
 const User = require('../models/user');
 const Request = require('../models/request');
 const Question = require('../models/question');
+
+//---------------Test de carga de imagenes---------------------
+
+router.get('/images/upload', (req, res) => {
+  res.render('upimg');
+});
+
+const storage = multer.diskStorage({
+  destination: path.join(__dirname, '../public/uploads'),
+  filename:  (req, file, cb) => {
+      cb(null, file.originalname);
+  }
+})
+const uploadImage = multer({
+  storage,
+  limits: {fileSize: 1000000}
+}).single('image');
+
+router.post('/images/upload', (req, res) => {
+  uploadImage(req, res, (err) => {
+      if (err) {
+          err.message = 'The file is so heavy for my service';
+          return res.send(err);
+      }
+      console.log(req.file);
+      res.send('uploaded');
+  });
+});
+
+router.get('/images', (req, res) => {});
+
+//---------------------------------------------------------------------
 
 router.get('/', async(req, res) => {
   const services = await Service.find();

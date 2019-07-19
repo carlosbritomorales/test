@@ -1,0 +1,10 @@
+<%- layout('layouts/main.ejs') %>
+
+<div class="container">
+    <form action="/images/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <button>
+            Save
+        </button>
+    </form>
+</div>
