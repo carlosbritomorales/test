@@ -22,24 +22,38 @@ router.get('/images/upload', (req, res) => {
 const storage = multer.diskStorage({
   destination: path.join(__dirname, '../public/uploads'),
   filename:  (req, file, cb) => {
+    console.log(req.params);
+    const { id } = req.params;
+    file.originalname=id+".jpg";
       cb(null, file.originalname);
   }
-})
+});
+
 const uploadImage = multer({
   storage,
   limits: {fileSize: 1000000}
 }).single('image');
 
-router.post('/images/upload', (req, res) => {
+
+router.get('/upimg/:id', (req, res) => {
+
+  res.render('profile');
+
+});
+
+
+router.post('/images/upload/:id', (req, res) => {
+  //console.log(req.params);
   uploadImage(req, res, (err) => {
       if (err) {
           err.message = 'The file is so heavy for my service';
           return res.send(err);
       }
       console.log(req.file);
-      res.send('uploaded');
+      res.redirect('../../profile')
   });
 });
+
 
 router.get('/images', (req, res) => {});
 

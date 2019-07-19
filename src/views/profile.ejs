@@ -20,9 +20,10 @@
 
     <div id="basic" class="card-body">
         <div class="card bg-dark text-white">
-            <img id="banner" src="/img/nonprofile.png" class="card-img text-align-right">
+            <img id="banner" src="/uploads/<%= user._id %>.jpg" class="card-img text-align-right">
             <div  class="card-img-overlay">
                 <h5 class="card-title">Información Básica</h5>
+                <form action="/images/upload/<%= user._id %>" method="POST" enctype="multipart/form-data"><input type="file" name="image"><button>modificar foto</button></form>
                 <b>Nombre de Usuario:</b>  <%= user.name %><br>
                 <b>Edad:</b> <%= user.birthdate %><br>
                 <b>Email:</b> <%= user.email %><br>
@@ -32,19 +33,6 @@
           </div>
       
     </div>
-
-    <div id="basic" class="card-body">
-      <div class="card bg-dark text-white">
-          <img id="banner" src="/img/nonprofile.png" class="card-img text-align-right" alt="...">
-          <div  class="card-img-overlay">
-              <h5 class="card-title">Información Básica</h5>
-              <b>Nombre de Usuario:</b>  <%= user.name %><br>
-              <b>Edad:</b> <%= user.birthdate %><br>
-              <b>Email:</b> <%= user.email %><br>
-              <b>Id:</b> <%= user._id %><br>
-              <b>Service:</b> <%= services.length %><br>
-          </div>
-        </div>
     
   </div>
 
