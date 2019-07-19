@@ -1,7 +1,4 @@
-#basic{
-    font-family: serif;
-    text-align: right;
-}
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
 
 #banner{
     height: 200px;
@@ -32,10 +29,12 @@
 }
 
 #pcard{
-    text-align: justify;
+    
+    text-align: right;
     margin: 10px;
-    border-style: solid;
-    border-color: black;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: rgba(0, 0, 0, 0.247);
+    
 }
 
 #pcard-b{
@@ -48,4 +47,22 @@
 
 #pcard-p{
 
+}
+
+#img-profile{
+    text-align: left;
+}
+
+#img-input{
+    
+}
+
+#basic{
+    font-family: serif;
+    text-align: right;
+    
+}
+
+#basic-2{
+    height: 400px;
 }

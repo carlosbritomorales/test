@@ -49,8 +49,12 @@ router.post('/images/upload/:id', (req, res) => {
           err.message = 'The file is so heavy for my service';
           return res.send(err);
       }
-      console.log(req.file);
-      res.redirect('../../profile')
+      //console.log(req.file);
+      if(req.params!=undefined){
+        res.redirect('/../../profile');
+      }else{
+        res.redirect('rutvalidate')
+      }
   });
 });
 
@@ -138,23 +142,44 @@ router.get('/panelquestions', async(req, res) => {
 
 });
 
-router.get('/panelquestions/:id', async (req, res, next) => {
-  const question  = await Question.findById(req.params.id);
-  console.log(question)
-  res.render('panelquestions', { question });
+router.get('/questionspanel', async(req, res) => {
+
+  const users = await User.find();
+  const services = await Service.find();
+  const question = await Question.find();
+
+  var moment = require('moment');
+
+  //exports.myrequest = function(req, res) {
+  
+      res.render('questionspanel', { 
+          moment: moment,
+          users,
+          services,
+          question,
+      });
+  
+  //}
+
 });
 
-router.post('/panelquestions/:id', async (req, res, next) => {
+router.get('/questionspanel/:id', async (req, res, next) => {
+  const question  = await Question.findById(req.params.id);
+  console.log(question)
+  res.render('questionspanel', { question });
+});
+
+router.post('/questionspanel/:id', async (req, res, next) => {
 const { id } = req.params;
 await Question.update({_id: id}, req.body);
-res.redirect('/panelquestions');
+res.redirect('/questionspanel');
 });
 
 router.post('/addquestion', async(req, res) => {
   const service = await Service.findById(req.params.id);
   const question = new Question(req.body);
   await question.save();
-  res.redirect('/panelquestions');
+  res.redirect('/questionspanel');
 });
 
 
