@@ -9,6 +9,10 @@ const RequestSchema = Schema({
   category: String,
   rating: String,
   description: String,
+  estado: {
+  type: String,
+  default: "En Espera"
+  },
   status: {
   type: Boolean,
   default: false

@@ -1,5 +1,6 @@
 <%- layout('layouts/main.ejs') %>
 
+<link rel="stylesheet" href="/css/rutvalidate.css">
 
 <div class="col-md-4 offset-md-4">
     <div class="card mt-2 text-center">
@@ -20,14 +21,15 @@
                   </div>
                   <p class="text-justify"><%= user.name %> nuestro objetivo es brindarte un buen servicio, para ello te pedimos que verifiques los datos del proveedor y decidas si es lo que necesitas realmente. ¡Gracias!</p>
                   <p> <%= service.title %> / <%= service.category %><br>->Ofrecido por <%= service.username %><br></p>
-                  
-              <button class="btn btn-primary conntet-alingn-center" type="submit">
+              <button id="confirmars" class="btn btn-primary conntet-alingn-center" type="submit">
                   ¡Confirmar!
                 </button>
             </form>
         </div>
     </div>
 </div>
+
+<script src="/js/presignup.js"></script>
 
 
       

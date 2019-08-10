@@ -1,5 +1,6 @@
 <%- layout('layouts/main.ejs') %>
 
+<link rel="stylesheet" href="/css/rutvalidate.css">
 
 <link rel="stylesheet" href="/css/profile.css">
 
@@ -24,7 +25,8 @@
               <tr>
                 <th>N°</th>
                 <th>Descripción</th>
-                <th>Valoración</th>
+                <th>Estado</th>
+                <th>Pagar</th>
               </tr>
             </thead>  
         <tbody>
@@ -40,10 +42,24 @@
                                 <input id="hidden_field" name="rating" type="hidden" value="<%= services[k].rating + 1 %>" />
                               </div>
                           <% } %>
-                        <% } %> 
+                        <% } %>
                   <td>
-                    <button type="submit" class="btn btn-prymary btn-dark">Lo recomiendo!</button></td>
-                  </form>         
+                      <%= request[i].estado %> 
+                    
+                  </form>
+                  
+
+
+                  
+
+            <form action="/payrequestservice/<%= request[i]._id %>" method="POST">
+
+    <td>
+      <button id="pagar" type="submit" class="btn btn-prymary btn-dark"> <% if (request[i].status==true) { %> PAGADO <% } %> <% if (request[i].status==false) { %> PAGAR <% } %> </button></td>
+      
+    </form>
+
+
               </tr>
               <% } %>
           <% } %>
@@ -52,7 +68,7 @@
 
     </div>
 
-    
+    <script src="/js/presignup.js"></script>
 
   </div>
 

@@ -379,9 +379,12 @@ router.get('/logout', (req, res, next) => {
 //Rutas relacionadas con Manejo de Servicios (Agregar, Eliminar y Editar)
 
 
-router.get('/myserviceshistory', (req, res, next) => {
+router.get('/myserviceshistory', async(req, res, next) => {
+  
+  const request = await Request.find();
+  
   if(req.isAuthenticated()){
-    res.render('myserviceshistory')
+    res.render('myserviceshistory',{request});
   }else{
     res.render('index');
   }
@@ -518,6 +521,7 @@ router.post('/addrequest', async(req, res) => {
   res.redirect('/myrequest');
 });
 
+/*
 router.get('/requestservice', async(req, res) => {
   
   const users = await User.find();
@@ -534,12 +538,31 @@ router.get('/requestservice', async(req, res) => {
   });
 
 });
+*/
 
 router.post('/rateservice/:id', async (req, res, next) => {
   const { id } = req.params;
   await Service.update({_id: id}, req.body);
   res.redirect('/myrequest');
   });
+
+  router.post('/statusservice/:id', async (req, res, next) => {
+    const { id } = req.params;
+    await Request.update({_id: id}, req.body);
+    res.redirect('/myserviceshistory');
+    });
+
+    router.get('/payservice/:id', async (req, res, next) => {
+      const { id } = req.params;
+      await Request.update({_id: id}, req.body);
+      res.redirect('/myrequest');
+      });
+
+    router.post('/payservice/:id', async (req, res, next) => {
+    const { id } = req.params;
+    await Request.update({_id: id}, req.body);
+    res.redirect('/myrequest');
+    });
 
 router.get('/requestservice/:id', async (req, res, next) => {
   const service = await Service.findById(req.params.id);
@@ -558,6 +581,17 @@ router.post('/requestservice/:id', async (req, res, next) => {
   res.render('requestservice', { request, services, moment: moment });
   //res.redirect('/requestservice');
 });
+
+router.post('/payrequestservice/:id', async (req, res, next) => {
+  const { id } = req.params;
+  const request = await Request.findById(req.params.id);
+  const requests = await Request.find();
+  const services = await Service.find();
+  await Request.update({_id: id}, req.body);
+  res.render('payrequestservice',{request,services,requests});
+  //res.redirect('/requestservice');
+});
+
 //
 
 module.exports = router;
