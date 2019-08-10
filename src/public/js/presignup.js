@@ -1,9 +1,4 @@
 btnvalida.disabled=true;
-btnpagar.disabled=true;
-
-$("#pagar").click(function(){
-	pagar.disabled=true;
-});
 
 $("#boxok").click(function(){
 	if(boxok.checked==true){
