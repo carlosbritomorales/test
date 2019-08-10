@@ -6,8 +6,67 @@
     <div class="card mt-2 text-center">
       <div class="card-header"><h3>Pagar Servicio</h3></div>
         <div class="card-body">
-
             <!-- LIST -->
+ <div class="col-md-auto">
+ 
+    <table class="table table-bordered table-hover">
+      <thead>
+            <tr>
+              <th>N°</th>
+              <th>Descripción</th>
+              <th>Estado</th>
+              <th>Precio</th>
+              <th>Pagar</th>
+            </tr>
+          </thead>  
+      <tbody>
+        
+        <% for(var i=0,j=1; i < requests.length; i++,k++) { %>
+            <% if (request.id == requests[i]._id) { %>                
+            <tr>
+                <td><%= j++%></td>
+                <td>Servicio de <strong><%= requests[i].title %></strong> brindado por <strong><%= requests[i].providername %></strong> el <strong><%= requests[i].requestdate %></strong></td>
+                    <% for(var k=0; k < services.length; k++) { %>
+                        <% if (requests[i].title == services[k].title) { %>  
+                      <form action="/rateservice/<%= services[k]._id %>" method="POST">
+                          <div class="form-group">
+                              <input id="hidden_field" name="rating" type="hidden" value="<%= services[k].rating + 1 %>" />
+                            </div>
+                        <% } %>
+                      <% } %>
+                
+                </form>
+                
+                <form action="/payrequestservice/<%= requests[i]._id %>" method="POST">
+
+                  <td>
+                      <%= requests[i].estado %> </td>
+                  </form>
+
+                <form action="/payservice/<%= requests[i]._id %>" method="POST">
+                    <div class="form-group">
+                        <input id="hidden_field" name="status" type="hidden" value="<%= true %>" />
+                      </div>
+                      <td><%= requests[i].precio %></td>
+          <td>
+            <button type="submit" class="btn btn-prymary btn-dark"> <% if (requests[i].status==true) { %> PAGADO <% } %> <% if (requests[i].status==false) { %> PAGAR <% } %> </button></td>
+          </form>
+
+            </tr>
+            <% } %>
+        <% } %>
+      </tbody>
+    </table>
+
+  </div>
+            
+        </div>
+    </div>
+
+    <div class="card mt-2 text-center">
+        <div class="card-header"><h3>Calificar Servicio</h3></div>
+          <div class="card-body">
+               <!-- LIST -->
  <div class="col-md-auto">
  
     <table class="table table-bordered table-hover">
@@ -17,7 +76,7 @@
               <th>Descripción</th>
               <th>Calificar</th>
               <th>Estado</th>
-              <th>Pagar</th>
+              <th>Comentarios</th>
             </tr>
           </thead>  
       <tbody>
@@ -41,21 +100,24 @@
                 
                 <form action="/payrequestservice/<%= requests[i]._id %>" method="POST">
 
-                  <td>
-                      <%= requests[i].estado %> </td>
+                  
                   </form>
 
                 <form action="/payservice/<%= requests[i]._id %>" method="POST">
                     <div class="form-group">
                         <input id="hidden_field" name="status" type="hidden" value="<%= true %>" />
                       </div>
-
-          <td>
-            <button id="pagar" type="submit" class="btn btn-prymary btn-dark"> <% if (requests[i].status==true) { %> PAGADO <% } %> <% if (requests[i].status==false) { %> PAGAR <% } %> </button></td>
+                      <td><%= requests[i].estado %></td>
+          
           </form>
 
-         
+          <form action="/comentarioservice/<%= requests[i]._id %>" method="POST">
+              <td><input id="card-input" name="comentario" placeholder="comentario" class="form-control">
+                <button id="pagar" type="submit" class="btn btn-prymary btn-dark"> Aceptar </button></td>
+  
+  </form>
 
+          
 
             </tr>
             <% } %>
@@ -64,14 +126,6 @@
     </table>
 
   </div>
-            
-        </div>
-    </div>
-
-    <div class="card mt-2 text-center">
-        <div class="card-header"><h3>Calificar Servicio</h3></div>
-          <div class="card-body">
-              
           </div>
       </div>
 

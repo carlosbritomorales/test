@@ -8,7 +8,6 @@
               <p class="card-text"><ul>
 
                 <b>Información básica de del Prestador:</b><br>
-
                     <% for(var i=0,j=1; i < users.length; i++) { %>
                         <% if (service.userid == users[i]._id) { %>          
                             <li>Nombre Completo: <%= users[i].name %></li>
@@ -18,11 +17,10 @@
                     
 
                     <br><b>Ofrece los siguientes servicios:</b><br>
-
                     <% var cont=1 %>
                     <% for(var i=0; i < services.length; i++) { %>
                       <% if (service.userid == services[i].userid) { %>          
-                          <%= cont %>. <%= services[i].title %><br>
+                          <%= cont %>. <%= services[i].title %> (<%= services[i].rating %> Recomendaciones) <br>
                           <% cont=cont + 1 %>
                       <% } %>
                     <% } %>

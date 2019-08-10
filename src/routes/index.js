@@ -543,7 +543,8 @@ router.get('/requestservice', async(req, res) => {
 router.post('/rateservice/:id', async (req, res, next) => {
   const { id } = req.params;
   await Service.update({_id: id}, req.body);
-  res.redirect('/myrequest');
+  res.redirect('/payservice/'+id);
+
   });
 
   router.post('/statusservice/:id', async (req, res, next) => {
@@ -551,6 +552,18 @@ router.post('/rateservice/:id', async (req, res, next) => {
     await Request.update({_id: id}, req.body);
     res.redirect('/myserviceshistory');
     });
+
+    router.post('/serviceprice/:id', async (req, res, next) => {
+      const { id } = req.params;
+      await Request.update({_id: id}, req.body);
+      res.redirect('/myserviceshistory');
+    });
+
+      router.post('/comentarioservice/:id', async (req, res, next) => {
+        const { id } = req.params;
+        await Request.update({_id: id}, req.body);
+        res.redirect('/myrequest');
+        });
 
     router.get('/payservice/:id', async (req, res, next) => {
       const { id } = req.params;

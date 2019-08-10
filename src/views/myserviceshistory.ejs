@@ -56,6 +56,9 @@
                 <th>Fecha</th>
                 <th>Cliente</th>
                 <th>Estado</th>
+                <th>de Solicitud</th>
+                <th>Precio</th>
+                <th>Comentarios</th>
               </tr>
             </thead>  
         <tbody>
@@ -75,6 +78,25 @@
           <td>
             <button id="pagar" type="submit" class="btn btn-prymary btn-dark"> Aceptar </button></td>
           </form>
+
+          <form action="/statusservice/<%= request[i]._id %>" method="POST">
+            <div class="form-group">
+              <input id="hidden_field" name="estado" type="hidden" value="Rechazado" />
+            </div>
+
+  <td>
+    <button id="pagar" type="submit" class="btn btn-prymary btn-dark"> Rechazar </button></td>
+  </form>
+
+          <form action="/serviceprice/<%= request[i]._id %>" method="POST">
+      
+
+  <td>  
+    <input id="card-input" name="precio" placeholder="precio" class="form-control">
+    <button id="pagar" type="submit" class="btn btn-prymary btn-dark"> Aceptar </button></td>
+  </form>
+
+ <td>El Cliente dice: <%= request[i].comentario %></td> 
 
             </tr>
 

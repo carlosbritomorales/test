@@ -3,8 +3,14 @@ const Schema = mongoose.Schema;
 
 const QuestionSchema = Schema({
   title: String,
-  answer: String,
-  question: String,
+  answer: {
+    type: String,
+    default: " "
+    },
+    question: {
+      type: String,
+      default: " "
+      },
   questuserid: String,
   userid: String,
   serviceid: String,

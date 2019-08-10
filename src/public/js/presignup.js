@@ -1,4 +1,5 @@
 btnvalida.disabled=true;
+btnpagar.disabled=true;
 
 $("#pagar").click(function(){
 	pagar.disabled=true;
