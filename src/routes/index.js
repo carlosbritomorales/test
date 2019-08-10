@@ -179,7 +179,7 @@ router.post('/addquestion', async(req, res) => {
   const service = await Service.findById(req.params.id);
   const question = new Question(req.body);
   await question.save();
-  res.redirect('/questionspanel');
+  res.redirect('/panelquestions');
 });
 
 
