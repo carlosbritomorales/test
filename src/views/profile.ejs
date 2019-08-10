@@ -2,39 +2,71 @@
 
 <link rel="stylesheet" href="/css/profile.css">
 
-
 <div class="card text-center">
-    <div class="card-header"><h3>Perfil de Usuario</h3><hr>
-      <ul class="nav nav-tabs card-header-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" href="/profile">Información Básica</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/accountprofile">Mi Cuenta</a>
-        </li>
-        
-      </ul>
-    </div>
+  <div class="card-header"><h3>Perfil de Usuario</h3><hr>
+    <ul class="nav nav-tabs card-header-tabs">
 
+      <li class="nav-item">
+        <a class="nav-link active" href="/profile">Información Básica</a>
+      </li>
 
+      <% if (user) { %>
+          <% if (user.isServiceProvider()) { %>     
+            <li class="nav-item">
+                <a class="nav-link" href="/myservices">Mis Servicios</a>
+            </li> 
+          <% } %>
+      <% } %>
 
-    <div id="basic" class="card-body">
-        <div class="card bg-dark text-white">
-            <img id="banner" src="/uploads/<%= user._id %>.jpg" class="card-img text-align-right">
-            <div id="pcard" class="card-img-overlay">
-                <h5 class="card-title">Información Básica</h5>
-                <b>Nombre de Usuario:</b>  <%= user.name %><br>
-                <b>Email:</b> <%= user.email %><br>
-                
-            </div>
-          </div>
-      
-    </div>
-    
-  
+      <% if (user) { %>
+          <% if (user.isServiceProvider()) { %>     
+            <li class="nav-item">
+                <a class="nav-link" href="/questionspanel">Consultas</a>
+            </li> 
+          <% } %>
+      <% } %>
 
-    
+      <% if (user) { %>
+          <% if (user.isServiceProvider()) { %>     
+            <li class="nav-item">
+                <a class="nav-link" href="/myserviceshistory">Mi Historial</a>
+            </li> 
+          <% } %>
+      <% } %>
 
+      <% if (user) { %>
+          <% if (!user.isServiceProvider()) { %>     
+            <li class="nav-item">
+                <a class="nav-link" href="/myrequest">Mis Solicitudes</a>
+            </li> 
+          <% } %>
+      <% } %>
+
+      <% if (user) { %>
+        <% if (!user.isServiceProvider()) { %>     
+          <li class="nav-item">
+              <a class="nav-link" href="/panelquestions">Mis Consultas</a>
+          </li> 
+        <% } %>
+    <% } %>
+
+    </ul>
   </div>
 
+  <div id="basic" class="card-body">
+    <div class="card bg-dark text-white">
+      <div> <img id="banner" src="/uploads/<%= user._id %>.jpg" class="card-img text-align-right">  </div>
+
+      <div id="pcard" class="card-img-overlay">
+        <h5 class="card-title">Información Básica</h5>
+        <b>Nombre de Usuario:</b>  <%= user.name %><br>
+        <b>Email:</b> <%= user.email %><br>   
+      </div>
+    </div>
+
+    <div id="imgPerfil">
+      <h5>Cambiar foto de Perfil</h5>
+      <form action="/images/upload/<%= user._id %>" method="POST" enctype="multipart/form-data"><input  type="file" name="image"><button>Listo</button></form>
+    </div>
+  </div>
 </div>

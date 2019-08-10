@@ -2,45 +2,79 @@
  
 <link rel="stylesheet" href="/css/profile.css">
 
-
 <div class="card text-center">
-    <div class="card-header"><h3>Mi Actividad</h3><hr>
+    <div class="card-header"><h3>Perfil de Usuario</h3><hr>
       <ul class="nav nav-tabs card-header-tabs">
+  
         <li class="nav-item">
-            <a class="nav-link active" href="/questionspanel">Preguntas</a>
-          
+          <a class="nav-link" href="/profile">Información Básica</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/myserviceshistory">Historial</a>
-        </li>
+  
+        <% if (user) { %>
+          <% if (user.isServiceProvider()) { %>     
+            <li class="nav-item">
+                <a class="nav-link" href="/myservices">Mis Servicios</a>
+            </li> 
+          <% } %>
+        <% } %>
+  
+        <% if (user) { %>
+          <% if (user.isServiceProvider()) { %>     
+            <li class="nav-item">
+                <a class="nav-link active" href="/questionspanel">Consultas</a>
+            </li> 
+          <% } %>
+        <% } %>
+
+        <% if (user) { %>
+          <% if (user.isServiceProvider()) { %>     
+            <li class="nav-item">
+                <a class="nav-link" href="/myserviceshistory">Mi Historial</a>
+            </li> 
+          <% } %>
+        <% } %>
+  
+        <% if (user) { %>
+          <% if (!user.isServiceProvider()) { %>     
+            <li class="nav-item">
+                <a class="nav-link" href="/myrequest"">Mis Actividadss</a>
+            </li> 
+          <% } %>
+        <% } %>
         
       </ul>
     </div>
 
-    <!-- LIST -->
-<div class="col-md-auto">
-      <table class="table table-bordered table-hover">
-        <thead>
-              <tr>
-                <th>Servicio</th>
-                <th>Pregunta</th>
-                <th>Respuesta</th>
-              </tr>
-            </thead>  
-        <tbody>
-          <% for(var i=0,j=1; i < question.length; i++) { %>
-              <% if (question[i].userid == user._id ) { %>                
-              <tr>
-                  <td><%= question[i].title %></td>
-                  <td><strong><%= question[i].question %></strong></td>
-                  <td><strong><%= question[i].answer %></strong></td>      
-              </tr>
-          <% } %>
-          <% } %>
-        </tbody>
-      </table>
 
-    </div>
+    <!-- LIST -->
+    <div class="col-md-auto">
+        <table class="table table-bordered table-hover">
+          <thead>
+                <tr>
+                  <th>Servicio</th>
+                  <th>Pregunta</th>
+                  <th>Respuesta</th>
+                </tr>
+              </thead>  
+          <tbody>
+            <% for(var i=0,j=1; i < question.length; i++) { %>
+                <% if (question[i].questuserid == user._id ) { %>                
+                <tr>
+                    <td><%= question[i].title %></td>
+                    <td><strong><%= question[i].question %></strong></td>
+                    <td>
+                        <form action="/editanswers/<%= question[i]._id %>" method="post">
+                          <strong><textarea name="answer" placeholder="<%= question[i].answer %>"></textarea></strong>
+                          <button class="btn btn-primary conntet-alingn-center" type="submit">Responder</button>
+                        </form>
+                    </td>      
+                </tr>
+            <% } %>
+            <% } %>
+          </tbody>
+        </table>
+  
+      </div>
 
 
 </div>

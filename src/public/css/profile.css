@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
 
 #banner{
+    float:left;
     height: 200px;
     width: 200px;
 }
@@ -65,4 +66,10 @@
 
 #basic-2{
     height: 400px;
+}
+
+
+#imgPerfil{
+    font: caption;
+    text-align: left;
 }

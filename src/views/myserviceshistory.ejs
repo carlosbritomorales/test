@@ -3,65 +3,88 @@
 <link rel="stylesheet" href="/css/mapsignup.css">
 
 <div class="card text-center">
-  <div class="card-header"><h3>Panel de Servicios</h3><hr>
+  <div class="card-header"><h3>Perfil de Usuario</h3><hr>
     <ul class="nav nav-tabs card-header-tabs">
+
       <li class="nav-item">
-        <a class="nav-link" href="/questionspanel">Preguntas</a>
+        <a class="nav-link" href="/profile">Información Básica</a>
       </li>
-      <li class="nav-item">
-          <a class="nav-link active" href="/myserviceshistory">Historial</a>
-      </li>
-      
+
+      <% if (user) { %>
+        <% if (user.isServiceProvider()) { %>     
+          <li class="nav-item">
+            <a class="nav-link" href="/myservices">Mis Servicios</a>
+          </li> 
+        <% } %>
+      <% } %>
+
+      <% if (user) { %>
+        <% if (user.isServiceProvider()) { %>     
+          <li class="nav-item">
+            <a class="nav-link" href="/questionspanel">Consultas</a>
+          </li> 
+        <% } %>
+      <% } %>
+
+      <% if (user) { %>
+        <% if (user.isServiceProvider()) { %>     
+          <li class="nav-item">
+              <a class="nav-link active" href="/myserviceshistory">Mi Historial</a>
+          </li> 
+        <% } %>
+      <% } %>
+
+      <% if (user) { %>
+        <% if (!user.isServiceProvider()) { %>     
+          <li class="nav-item">
+            <a class="nav-link" href="/myrequest"">Mis Actividadss</a>
+          </li> 
+        <% } %>
+      <% } %>
+  
     </ul>
   </div>
 
+
   <div  class="card-body">
+        <!-- LIST -->
+    <div class="col-md-auto">
+      <table class="table table-bordered table-hover">
+        <thead>
+              <tr>
+                <th>Servicio</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Estado</th>
+              </tr>
+            </thead>  
+        <tbody>
+          <% for(var i=0,j=0; i < request.length; i++) { %>
+              <% if ( user.name  ==  request[i].providername ) { %>                
+              <% j=j+1 %>
+              <tr>
+                  <td><%= request[i].title %></td>
+                  <td><%= request[i].requestdate %></td>
+                  <td><%= request[i].userid %></td>
 
-    <!-- LIST -->
-<div class="col-md-auto">
-  <table class="table table-bordered table-hover">
-    <thead>
-          <tr>
-            <th>Servicio</th>
-            <th>Fecha</th>
-            <th>Cliente</th>
-            <th>Estado</th>
-          </tr>
-        </thead>  
-    <tbody>
-      <% for(var i=0,j=0; i < request.length; i++) { %>
-          <% if ( user.name  ==  request[i].providername ) { %>                
-          <% j=j+1 %>
-          <tr>
-              <td><%= request[i].title %></td>
-              <td><%= request[i].requestdate %></td>
-              <td><%= request[i].userid %></td>
+                  <form action="/statusservice/<%= request[i]._id %>" method="POST">
+                    <div class="form-group">
+                      <input id="hidden_field" name="estado" type="hidden" value="Aceptado" />
+                    </div>
 
-              <form action="/statusservice/<%= request[i]._id %>" method="POST">
-                <div class="form-group">
-                    <input id="hidden_field" name="estado" type="hidden" value="Aceptado" />
-                  </div>
+          <td>
+            <button id="pagar" type="submit" class="btn btn-prymary btn-dark"> Aceptar </button></td>
+          </form>
 
-      <td>
-        <button id="pagar" type="submit" class="btn btn-prymary btn-dark"> Aceptar </button></td>
-      </form>
+            </tr>
 
-          </tr>
+          <% } %>
+          
+          <% } %>
 
-      <% } %>
-      
-      <% } %>
-
-    </tbody>
-    <h5>Has concretado <%= j %> servicios.</h5><br> 
-  </table>
-
-  
-
-</div>
-
-
-
+        </tbody>
+        <h5>Has concretado <%= j %> servicios.</h5><br> 
+      </table>
+    </div>
   </div>
-
-
+</div>

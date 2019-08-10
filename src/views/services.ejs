@@ -2,33 +2,58 @@
 
 <link rel="stylesheet" href="/css/services.css">
 
-<h4 class="text-center" style="margin-bottom: -25px; margin-top: -15px; ">&nbsp;&nbsp;</h4>
-
-<div class="row" style="padding: 10px;  max-width: 100%; margin-left: 0px;" >
-  
-    <% for(var i=0; i < services.length; i++) { %>
-      <div style="padding: 5px; display:inline-block ">
-      <div id="card" class="card text-white mb-3" style="max-width: 20em">
-          <div id="card-h" class="card-header text-center font-weight-bold"><%= services[i].title %></div>
-          <div id="card-i"><img id="img-profile" class="card-img-top" style="max-width: 10rem; max-height: 10rem; display:block; margin:auto;" src="/uploads/<%= services[i].userid %>.jpg" alt="Card image cap"></div>
-          <div id="card-b" class="card-body text-center"><i style="color: rgb(8, 214, 94)">Servicio recomendado <%= services[i].rating %> veces.</i> <hr>
-            <p class="card-title text-center bg-dark" style="border-radius: 20px">Prestador: <%= services[i].username %></p>
-          <p class="card-title text-center bg-danger" style="border-radius: 5px; padding: 5px;"><% if (services[i].status) { %> <img style="width: 20px; height: 20px;" src="https://i.ibb.co/wYx2XQn/clock.png" alt=""> Disponibilidad Inmediata <% } else { %> Confirmar Disponibilidad <% } %></p>
-            <hr><p class="card-text text-justify bg-dark" style="border-radius: 5px; padding: 5px;"><%= services[i].description %></p><hr>
-            <% if (user && !user.isServiceProvider() && services[i].rating <= 5) { %><a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Solicitar</button></a>&nbsp&nbsp<a href="/questionspost/<%= services[i]._id %>"><button type="button" class="btn btn-light">Consultar</button></a> &nbsp<span class="fa fa-star"> </span><span class="fa fa-star"> </span><span class="fa fa-star"> </span><span class="fa fa-star"> </span><span class="fa fa-star"></span><% } %>
-            <% if (user && !user.isServiceProvider() && services[i].rating > 5 && services[i].rating <= 10) { %><a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Solicitar</button></a>&nbsp&nbsp<a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Consultar</button></a> &nbsp<span class="fa fa-star checked"> </span><span class="fa fa-star"> </span><span class="fa fa-star"> </span><span class="fa fa-star"> </span><span class="fa fa-star"></span><% } %>
-            <% if (user && !user.isServiceProvider() && services[i].rating > 10 && services[i].rating <= 15) { %><a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Solicitar</button></a>&nbsp&nbsp<button type="button" class="btn btn-light">Consultar</button> &nbsp<span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star"> </span><span class="fa fa-star"> </span><span class="fa fa-star"></span><% } %>
-            <% if (user && !user.isServiceProvider() && services[i].rating > 15 && services[i].rating <= 20) { %><a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Solicitar</button></a>&nbsp&nbsp<button type="button" class="btn btn-light">Consultar</button> &nbsp<span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star"> </span><span class="fa fa-star"></span><% } %>
-            <% if (user && !user.isServiceProvider() && services[i].rating > 20 && services[i].rating <= 25) { %><a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Solicitar</button></a>&nbsp&nbsp<button type="button" class="btn btn-light">Consultar</button> &nbsp<span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star"></span><% } %>
-            <% if (user && !user.isServiceProvider() && services[i].rating > 25) { %><a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Solicitar</button></a>&nbsp&nbsp<button type="button" class="btn btn-light">Consultar</button> &nbsp<span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star checked"></span><% } %>
-            
+<div class="card text-center">
+      <h4 class="text-center" style="margin-bottom: -25px; margin-top: 15px; ">&nbsp;&nbsp;</h4>
+      <div id="searchBox" class="row">
+        <div class="col-md-11 offset-md-0">
+          <div class="card">
+            <div class="card-body">
+                <select>
+                    <option value="Agricultura">Agricultura</option>
+                    <option value="Artesanía‎"selected>Artesanía‎</option>
+                    <option value="Carpintería‎‎">Carpintería‎</option>
+                    <option value="Computación">Computación</option> 
+                    <option value="Construcción">Construcción</option>
+                    <option value="Costura‎‎">Costura‎</option>
+                    <option value="Educación">Educación</option>
+                    <option value="Estética">Estética</option> 
+                    <option value="Gastronomía‎">Gastronomía‎‎</option>
+                    <option value="Jardinería‎">Jardinería‎</option>
+                    <option value="Luthería">Luthería</option>
+                    <option value="Peluquería‎">Peluquería‎</option>
+                    <option value="Mascotas">Mascotas</option>
+                    <option value="Moda">Moda</option>
+                    <option value="Sastrería‎">Sastrería</option>
+                    <option value="Zapatería‎">Zapatería‎</option>
+                </select>
+                <button type="button" class="btn btn-light">Filtrar</button>
+            </div>
           </div>
         </div>
       </div>
-    <% } %>
-  </div>
 
 
-
-     
- 
+      <div class="row" style="padding: 10px;  max-width: 100%; margin-left: 0px;" >
+  
+          <% for(var i=0; i < services.length; i++) { %>
+            <div style="padding: 5px; display:inline-block ">
+            <div id="card" class="card text-white mb-3" style="max-width: 20em">
+                <div id="card-h" class="card-header text-center font-weight-bold"><%= services[i].title %></div>
+                <div id="card-i"><img id="img-profile" class="card-img-top" style="max-width: 10rem; max-height: 10rem; display:block; margin:auto;" src="/uploads/<%= services[i].userid %>.jpg" alt="Card image cap"></div>
+                <div id="card-b" class="card-body text-center"><i style="color: rgb(8, 214, 94)">Servicio recomendado <%= services[i].rating %> veces.</i> <hr>
+                  <p class="card-title text-center bg-dark" style="border-radius: 20px">Prestador: <%= services[i].username %></p>
+                <p class="card-title text-center bg-danger" style="border-radius: 5px; padding: 5px;"><% if (services[i].status) { %> <img style="width: 20px; height: 20px;" src="https://i.ibb.co/wYx2XQn/clock.png" alt=""> Disponibilidad Inmediata <% } else { %> Confirmar Disponibilidad <% } %></p>
+                  <hr><p class="card-text text-justify bg-dark" style="border-radius: 5px; padding: 5px;"><%= services[i].description %></p><hr>
+                  <% if (user && !user.isServiceProvider() && services[i].rating <= 5) { %><a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Solicitar</button></a>&nbsp&nbsp<a href="/questionspost/<%= services[i]._id %>"><button type="button" class="btn btn-light">Consultar</button></a> &nbsp<span class="fa fa-star"> </span><span class="fa fa-star"> </span><span class="fa fa-star"> </span><span class="fa fa-star"> </span><span class="fa fa-star"></span><% } %>
+                  <% if (user && !user.isServiceProvider() && services[i].rating > 5 && services[i].rating <= 10) { %><a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Solicitar</button></a>&nbsp&nbsp<a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Consultar</button></a> &nbsp<span class="fa fa-star checked"> </span><span class="fa fa-star"> </span><span class="fa fa-star"> </span><span class="fa fa-star"> </span><span class="fa fa-star"></span><% } %>
+                  <% if (user && !user.isServiceProvider() && services[i].rating > 10 && services[i].rating <= 15) { %><a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Solicitar</button></a>&nbsp&nbsp<button type="button" class="btn btn-light">Consultar</button> &nbsp<span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star"> </span><span class="fa fa-star"> </span><span class="fa fa-star"></span><% } %>
+                  <% if (user && !user.isServiceProvider() && services[i].rating > 15 && services[i].rating <= 20) { %><a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Solicitar</button></a>&nbsp&nbsp<button type="button" class="btn btn-light">Consultar</button> &nbsp<span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star"> </span><span class="fa fa-star"></span><% } %>
+                  <% if (user && !user.isServiceProvider() && services[i].rating > 20 && services[i].rating <= 25) { %><a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Solicitar</button></a>&nbsp&nbsp<button type="button" class="btn btn-light">Consultar</button> &nbsp<span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star"></span><% } %>
+                  <% if (user && !user.isServiceProvider() && services[i].rating > 25) { %><a href="/requestservice/<%= services[i]._id %>"><button type="button" class="btn btn-light">Solicitar</button></a>&nbsp&nbsp<button type="button" class="btn btn-light">Consultar</button> &nbsp<span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star checked"> </span><span class="fa fa-star checked"></span><% } %>
+                  
+                </div>
+              </div>
+            </div>
+          <% } %>
+        </div>
+</div>

@@ -12,3 +12,8 @@
 #img-profile{
     border-radius: 100px;
 }
+
+#searchBox{
+    text-align: left;
+    float:left;
+}

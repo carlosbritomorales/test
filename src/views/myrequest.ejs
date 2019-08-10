@@ -1,20 +1,56 @@
 <%- layout('layouts/main.ejs') %>
 
 <link rel="stylesheet" href="/css/rutvalidate.css">
-
 <link rel="stylesheet" href="/css/profile.css">
 
-
 <div class="card text-center">
-    <div class="card-header"><h3>Mi Actividad</h3><hr>
+    <div class="card-header"><h3>Perfil de Usuario</h3><hr>
       <ul class="nav nav-tabs card-header-tabs">
+  
         <li class="nav-item">
-          <a class="nav-link active" href="/myrequest">Solicitudes</a>
+          <a class="nav-link" href="/profile">Información Básica</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/panelquestions">Preguntas</a>
-        </li>
-        
+  
+        <% if (user) { %>
+            <% if (user.isServiceProvider()) { %>     
+              <li class="nav-item">
+                  <a class="nav-link" href="/myservices">Mis Servicios</a>
+              </li> 
+            <% } %>
+        <% } %>
+  
+        <% if (user) { %>
+            <% if (user.isServiceProvider()) { %>     
+              <li class="nav-item">
+                  <a class="nav-link" href="/questionspanel">Consultas</a>
+              </li> 
+            <% } %>
+        <% } %>
+  
+        <% if (user) { %>
+            <% if (user.isServiceProvider()) { %>     
+              <li class="nav-item">
+                  <a class="nav-link" href="/myserviceshistory">Mi Historial</a>
+              </li> 
+            <% } %>
+        <% } %>
+  
+        <% if (user) { %>
+            <% if (!user.isServiceProvider()) { %>     
+              <li class="nav-item">
+                  <a class="nav-link active" href="/myrequest">Mis Solicitudes</a>
+              </li> 
+            <% } %>
+        <% } %>
+  
+        <% if (user) { %>
+          <% if (!user.isServiceProvider()) { %>     
+            <li class="nav-item">
+                <a class="nav-link" href="/panelquestions">Mis Consultas</a>
+            </li> 
+          <% } %>
+      <% } %>
+  
       </ul>
     </div>
 

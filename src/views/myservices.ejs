@@ -3,20 +3,50 @@
 <link rel="stylesheet" href="/css/mapsignup.css">
 
 <div class="card text-center">
-  <div class="card-header"><h3>Panel de Servicios</h3><hr>
+  <div class="card-header"><h3>Perfil de Usuario</h3><hr>
     <ul class="nav nav-tabs card-header-tabs">
+
       <li class="nav-item">
-        <a class="nav-link active" href="/myservices">Agregar Servicio</a>
+        <a class="nav-link" href="/profile">Información Básica</a>
       </li>
-      
+
+      <% if (user) { %>
+        <% if (user.isServiceProvider()) { %>     
+          <li class="nav-item">
+              <a class="nav-link active" href="/myservices">Mis Servicios</a>
+          </li> 
+        <% } %>
+      <% } %>
+
+      <% if (user) { %>
+        <% if (user.isServiceProvider()) { %>     
+          <li class="nav-item">
+              <a class="nav-link" href="/questionspanel">Consultas</a>
+          </li> 
+        <% } %>
+      <% } %>
+
+      <% if (user) { %>
+        <% if (user.isServiceProvider()) { %>     
+          <li class="nav-item">
+              <a class="nav-link" href="/myserviceshistory">Mi Historial</a>
+          </li> 
+        <% } %>
+      <% } %>
+
+      <% if (user) { %>
+        <% if (!user.isServiceProvider()) { %>     
+          <li class="nav-item">
+              <a class="nav-link" href="/myrequest"">Mis Actividadss</a>
+          </li> 
+        <% } %>
+      <% } %>
       
     </ul>
   </div>
 
-  <div  class="card-body">
-      
-    
 
+  <div  class="card-body">
       <div class="row">
         <!--FORM-->
         <div class="col-md-5">
